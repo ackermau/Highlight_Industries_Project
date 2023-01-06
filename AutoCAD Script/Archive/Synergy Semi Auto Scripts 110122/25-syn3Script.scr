@@ -1,0 +1,8 @@
+'_.zoom 0,0 34,22.5
+(command "-LAYER" "S" "MISC" "")
+(command "TEXTSTYLE" "WD")
+(command "ERASE" "21.6031,13.65" "21.2772,12.9" "21.2229,12.15" "")
+(command "-TEXT" "19.6875,13.5938" "0.125" "0" "-- DANCER BAR LIMIT SWITCH")
+(command "-TEXT" "19.6875,12.8438" "0.125" "0" "-- HYDRO-STRETCH RELEASE (MAIN)")
+(command "-TEXT" "19.6875,12.0938" "0.125" "0" "-- HYDRO-STRETCH RELIEF (BOTTOM)")
+(command "SAVE" "")

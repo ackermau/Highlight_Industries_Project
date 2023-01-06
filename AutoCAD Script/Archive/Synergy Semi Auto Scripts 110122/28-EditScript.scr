@@ -1,0 +1,8 @@
+(command "-LAYOUT" "S" "Model")
+'_.zoom 0,0 34,22.5
+(command "-ATTEDIT" "Y" "HLI BORDER" "JOBNUM" "" "32.55,1" "" "V" "R" "<PNUM>" "")
+(command "-ATTEDIT" "Y" "HLI BORDER" "EGR" "" "31.8304,2.7437" "" "V" "R" "<ENGINIT>" "")
+(command "-ATTEDIT" "Y" "HLI BORDER" "DATE" "" "33.1,2.3" "" "V" "R" "<DATE>" "")
+(command "-ATTEDIT" "Y" "HLI BORDER" "MACHINE" "" "32.5353,1.8435" "" "V" "R" "<SYNPROF>" "")
+(command "SAVE" "")
+(command "CLOSE")

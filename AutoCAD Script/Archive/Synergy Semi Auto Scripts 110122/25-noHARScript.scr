@@ -1,0 +1,10 @@
+'_.zoom 0,0 34,22.5
+(command "-OSNAP" "NONE")
+(command "-LAYER" "S" "MISC" "")
+(command "TEXTSTYLE" "WD")
+(command "ERASE" "20.7026,16.6533" "10.128,16.5625" "")
+(command "-TEXT" "19.6875,16.5938" "0.125" "0" "-- SPARE")
+(command "-TEXT" "9.8089,16.5625" "0.125" "0" "SPARE")
+(command "-ATTEDIT" "Y" "HA1S1_INLINE" "WIRENO" "" "12.8312,16.6305" "" "V" "R" "C2503-SPARE/02" "")
+(command "-ATTEDIT" "Y" "HA1D3_INLINE" "WIRENO" "" "18.7769,16.6305" "" "V" "R" "C2503-SPARE/02" "")
+(command "SAVE" "")

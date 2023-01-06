@@ -1,0 +1,7 @@
+ATTDIA 0
+ATTREQ 1
+FILEDIA 0
+EXPERT 2
+'_.zoom 0,0 102,67.5
+(command "TABLEEXPORT" "63.217,57.1842")
+(command "SAVE" "")

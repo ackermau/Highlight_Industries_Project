@@ -1,0 +1,7 @@
+'_.zoom 0,0 102,67.5
+(command "-LAYER" "S" "MISC" "")
+(command "TEXTSTYLE" "ROMANS")
+(command "ERASE" "5.0202,59.5389" "5.0202,58.2305" "")
+(command "-TEXT" "1.3965,59.164" "0.8" "0" "4. CABLE-2604, FILM DELIVERY/HYDRO STRETCH HEATER CABLE")
+(command "-TEXT" "1.3965,57.8307" "0.8" "0" "5. CABLE-2608, TURNTABLE MOTOR HEATER CABLE")
+(command "SAVE" "")

@@ -1,0 +1,11 @@
+'_.zoom 0,0 34,22.5
+(command "-LAYER" "S" "BASE" "")
+(command "TEXTSTYLE" "WD")
+(command "ERASE" "21.6031,13.65" "21.2772,12.9" "21.2229,12.15" "10.128,13.5625" "")
+(command "-TEXT" "19.6875,13.5938" "0.125" "0" "-- SPARE")
+(command "-TEXT" "19.6875,12.8438" "0.125" "0" "-- HYDRO-STRETCH RELEASE (MAIN)")
+(command "-TEXT" "19.6875,12.0938" "0.125" "0" "-- HYDRO-STRETCH RELIEF (BOTTOM)")
+(command "-TEXT" "9.8399,13.5625" "0.125" "0" "SPARE")
+(command "-ATTEDIT" "Y" "HA1D3_INLINE" "WIRENO" "" "18.75,13.6493" "" "V" "R" "C2503-SPARE/08" "")
+(command "-ATTEDIT" "Y" "HA1S1_INLINE" "WIRENO" "" "12.4318,13.5625" "" "V" "R" "C2503-SPARE/8" "")
+(command "SAVE" "")

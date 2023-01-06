@@ -1,0 +1,5 @@
+'_.zoom 0,0 34,22.5
+(command "ERASE" "9.4322,8.7003" "3.3291,8.5477" "")
+(command "-ATTEDIT" "Y" "HA1X3Y" "DESC1" "" "1.875,20.25" "" "V" "R" "20 AMP" "")
+(command "-ATTEDIT" "Y" "HCB1" "RATING1" "" "4.5,17.87" "" "V" "R" "20A" "")
+(command "SAVE" "")

@@ -1,0 +1,5 @@
+'_.zoom 0,0 34,22.5
+(command "ERASE" "3.9862,14.9864" "6.3296,16.0989" "")
+(command "-ATTEDIT" "Y" "PLCIO_6876" "DESCA04" "" "10.6008,15.8405" "" "V" "R" "LIMIT SWITCH" "")
+(command "-ATTEDIT" "Y" "PLCIO_6876" "DESCB04" "" "10.488,15.6432" "" "V" "R" "HAR CONTROL" "")
+(command "SAVE" "")

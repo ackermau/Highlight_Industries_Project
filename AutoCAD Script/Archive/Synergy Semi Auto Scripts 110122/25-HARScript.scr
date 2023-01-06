@@ -1,0 +1,7 @@
+'_.zoom 0,0 34,22.5
+(command "-OSNAP" "NONE")
+(command "-LAYER" "S" "MISC" "")
+(command "TEXTSTYLE" "WD")
+(command "ERASE" "20.7026,16.6533" "")
+(command "-TEXT" "19.6875,16.5938" "0.125" "0" "-- DANCER BAR LIMIT SWITCH")
+(command "SAVE" "")

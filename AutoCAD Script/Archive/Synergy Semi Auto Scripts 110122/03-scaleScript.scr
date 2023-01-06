@@ -1,0 +1,4 @@
+'_.zoom 0,0 34,22.5
+(command "-ATTEDIT" "Y" "HLI BORDER" "DESCRIPTION" "" "31.8286,3.9279" "" "V" "R" "SCALE PACKAGE" "" "")
+(command "ERASE" "11.25,15.8665" "8.9497,16.084" "")
+(command "SAVE" "")

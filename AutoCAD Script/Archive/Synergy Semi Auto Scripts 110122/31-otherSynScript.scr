@@ -1,0 +1,6 @@
+'_.zoom 0,0 102,67.5
+(command "-LAYER" "S" "MISC" "")
+(command "TEXTSTYLE" "ROMANS")
+(command "ERASE" "16.5576,60.8474" "")
+(command "-TEXT" "1.3965,60.4974" "0.8" "0" "3. CABLE-0704, FILM DELIVERY MOTOR CABLE")
+(command "SAVE" "")

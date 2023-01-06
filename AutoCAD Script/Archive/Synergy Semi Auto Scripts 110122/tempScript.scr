@@ -1,0 +1,7 @@
+'_.zoom 0,0 68,45
+(command "-ATTEDIT" "Y" "HLI BORDER" "JOBNUM" "" "65,2" "" "V" "R" "54555" "")
+(command "-ATTEDIT" "Y" "HLI BORDER" "EGR" "" "63.5,5.5" "" "V" "R" "sss" "")
+(command "-ATTEDIT" "Y" "HLI BORDER" "DATE" "" "66.4,4.6" "" "V" "R" "02/02/2022" "")
+(command "-ATTEDIT" "Y" "HLI BORDER" "MACHINE" "" "65.0706,3.6871" "" "V" "R" "SYNERGY 2 HP" "")
+(command "SAVE" "")
+(command "CLOSE")

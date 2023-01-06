@@ -1,0 +1,8 @@
+'_.zoom 0,0 34,22.5
+(command "ERASE" "4.8899,19.653" "4.3578,19.9948" "")
+(command "ERASE" "4.875,20.438" "")
+(command "ERASE" "4.8808,19.9948" "")
+(command "-ATTEDIT" "Y" "WD_WNH" "WIRENO" "" "6.6563,20.313" "" "V" "R" "0203" "")
+(command "-LAYER" "S" "#16AWG BLUE" "")
+(command "_LINE" "4.6875,20.2505" "5.0625,20.2505" "")
+(command "SAVE" "")

@@ -1,0 +1,4 @@
+'_.zoom 0,0 34,22.5
+(command "-LAYER" "S" "MISC" "")
+(command "ERASE" "25.0037,19.7597" "27.4231,19.516" "")
+(command "SAVE" "")

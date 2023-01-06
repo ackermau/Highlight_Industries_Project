@@ -1,0 +1,6 @@
+'_.zoom 0,0 34,22.5
+(command "ERASE" "15.75,19.8474" "")
+(command "-LAYER" "S" "BASE" "")
+(command "TEXTSTYLE" "WD")
+(command "-TEXT" "15.15,19.8474" "0.125" "0" "HLI #403844")
+(command "SAVE" "")
