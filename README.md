@@ -1,6 +1,7 @@
 # Highlight_Industries_Project
 Custom program to build and customize new schematics with options from AutoCAD templates.
 
+NEED ACCESS TO HIGHLIGHT INDUSTRIES DATABASE TO RUN PROPERLY
 
 Please add directory to AutoCADs trusted files to let the program run smoothly.
 Follow steps:
