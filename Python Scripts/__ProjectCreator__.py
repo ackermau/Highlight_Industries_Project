@@ -38,6 +38,194 @@ class ToggledFrame(tk.Frame):
             toggle = '+'
         resizeWindowMan(toggle=toggle)
 
+###############################################
+# Changes machine specs to synergy machines   #
+###############################################
+def synConfig():
+    if macTypeVar.get() == 0:
+        syn2RadioB["text"] = "Synergy 2   "
+        syn2RadioB["variable"] = synVar
+        syn2_5RadioB.pack()
+        syn3RadioB.pack()
+
+        hiProfileCB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
+        lowProfileCB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
+        scaleCB.grid(column=0, row=2, sticky=W, padx=5, pady=5)
+        coldCB.grid(column=0, row=3, sticky=W, padx=5, pady=5)
+        splitCB.grid(column=0, row=4, sticky=W, padx=5, pady=5)
+        AMP20CB.grid(column=0, row=5, sticky=W, padx=5, pady=5)
+        autoCB.grid(column=1, row=0, sticky=W, padx=5, pady=5)
+        ulCB.grid(column=1, row=1, sticky=W, padx=5, pady=5)
+        doorCB.grid(column=1, row=2, sticky=W, padx=5, pady=5)
+        harCB.grid(column=1, row=3, sticky=W, padx=5, pady=5)
+        add9CB.grid(column=1, row=4, sticky=W, padx=5, pady=5)
+        add10CB.grid(column=1, row=5, sticky=W, padx=5, pady=5)
+        
+    elif macTypeVar.get() == 1:
+        syn2RadioB["text"] = "Synergy 5   "
+        syn2RadioB["variable"] = autoSynVar
+
+        autoAdd1CB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
+        autoAdd2CB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
+        autoAdd3CB.grid(column=0, row=2, sticky=W, padx=5, pady=5)
+        autoAdd4CB.grid(column=0, row=3, sticky=W, padx=5, pady=5)
+        autoAdd5CB.grid(column=0, row=4, sticky=W, padx=5, pady=5)
+        autoAdd6CB.grid(column=0, row=5, sticky=W, padx=5, pady=5)
+        autoAdd7CB.grid(column=1, row=0, sticky=W, padx=5, pady=5)
+        autoAdd8CB.grid(column=1, row=1, sticky=W, padx=5, pady=5)
+        autoAdd9CB.grid(column=1, row=2, sticky=W, padx=5, pady=5)
+        autoAdd10CB.grid(column=1, row=3, sticky=W, padx=5, pady=5)
+        autoAdd11CB.grid(column=1, row=4, sticky=W, padx=5, pady=5)
+        autoAdd12CB.grid(column=1, row=5, sticky=W, padx=5, pady=5)
+
+###############################################
+# Changes machine specs to freedom machines   #
+###############################################
+def freeConfig():
+    if macTypeVar.get() == 0:
+        syn2RadioB["text"] = "Freedom Semi"
+        syn2RadioB["variable"] = freeVar
+        syn2_5RadioB.pack_forget()
+        syn3RadioB.pack_forget()
+
+        hiProfileCB.grid_forget()
+        lowProfileCB.grid_forget()
+        scaleCB.grid_forget()
+        coldCB.grid_forget()
+        splitCB.grid_forget()
+        AMP20CB.grid_forget()
+        autoCB.grid_forget()
+        ulCB.grid_forget()
+        doorCB.grid_forget()
+        harCB.grid_forget()
+        add9CB.grid_forget()
+        add10CB.grid_forget()
+
+    elif macTypeVar.get() == 1:
+        syn2RadioB["text"] = "Freedom 6500"
+        syn2RadioB["variable"] = autoFreeVar
+
+        autoAdd1CB.grid_forget()
+        autoAdd2CB.grid_forget()
+        autoAdd3CB.grid_forget()
+        autoAdd4CB.grid_forget()
+        autoAdd5CB.grid_forget()
+        autoAdd6CB.grid_forget()
+        autoAdd7CB.grid_forget()
+        autoAdd8CB.grid_forget()
+        autoAdd9CB.grid_forget()
+        autoAdd10CB.grid_forget()
+        autoAdd11CB.grid_forget()
+        autoAdd12CB.grid_forget()
+
+#########################################################
+# Changes main tab to automatic machine configuration   #
+#########################################################
+def autoConfig():
+    # Button manipulation
+    autoB.config(relief=SUNKEN, bg=machineFrameColor, fg=textColor)
+    semiAutoB.config(relief=RAISED, bg=buttonColor, fg=machineFrameColor)
+
+    # Label manipulation
+    if macTypeVar.get() == 0:
+        # Setting main tab for automatic machines
+        synRadioB["text"] = "Synergy - Automatic  "
+        synRadioB["variable"] = macVarA
+        freeRadioB["text"] = "Freedom - Automatic"
+        freeRadioB["variable"] = macVarA
+        if macVarA.get() == 0:
+            syn2RadioB["text"] = "Synergy 5   "
+            syn2RadioB["variable"] = autoSynVar
+        elif macVarA.get() == 1:
+            syn2RadioB["text"] = "Freedom 6500"
+            syn2RadioB["variable"] = autoFreeVar
+        syn2_5RadioB.pack_forget()
+        syn3RadioB.pack_forget()
+
+        hiProfileCB.grid_forget()
+        lowProfileCB.grid_forget()
+        scaleCB.grid_forget()
+        coldCB.grid_forget()
+        splitCB.grid_forget()
+        AMP20CB.grid_forget()
+        autoCB.grid_forget()
+        ulCB.grid_forget()
+        doorCB.grid_forget()
+        harCB.grid_forget()
+        add9CB.grid_forget()
+        add10CB.grid_forget()
+
+        autoAdd1CB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
+        autoAdd2CB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
+        autoAdd3CB.grid(column=0, row=2, sticky=W, padx=5, pady=5)
+        autoAdd4CB.grid(column=0, row=3, sticky=W, padx=5, pady=5)
+        autoAdd5CB.grid(column=0, row=4, sticky=W, padx=5, pady=5)
+        autoAdd6CB.grid(column=0, row=5, sticky=W, padx=5, pady=5)
+        autoAdd7CB.grid(column=1, row=0, sticky=W, padx=5, pady=5)
+        autoAdd8CB.grid(column=1, row=1, sticky=W, padx=5, pady=5)
+        autoAdd9CB.grid(column=1, row=2, sticky=W, padx=5, pady=5)
+        autoAdd10CB.grid(column=1, row=3, sticky=W, padx=5, pady=5)
+        autoAdd11CB.grid(column=1, row=4, sticky=W, padx=5, pady=5)
+        autoAdd12CB.grid(column=1, row=5, sticky=W, padx=5, pady=5)
+
+        macTypeVar.set(1)
+    else:
+        pass
+
+#########################################################
+# Changes main tab to semi auto machine configuration   #
+#########################################################
+def semiConfig():
+    # Button manipulation
+    autoB.config(relief=RAISED, bg=buttonColor, fg=machineFrameColor)
+    semiAutoB.config(relief=SUNKEN, bg=machineFrameColor, fg=textColor)
+
+    # Lable manipulation
+    if macTypeVar.get() == 1:
+        # Setting main tab for semi auto machines
+        synRadioB["text"] = "Synergy - Semi Auto "
+        synRadioB["variable"] = macVarS
+        freeRadioB["text"] = "Freedom - Semi Auto"
+        freeRadioB["variable"] = macVarS
+        if macVarS.get() == 0:
+            syn2RadioB["text"] = "Synergy 2   "
+            syn2RadioB["variable"] = synVar
+            syn2_5RadioB.pack()
+            syn3RadioB.pack()
+        elif macVarS.get() == 1:
+            syn2RadioB["text"] = "Freedom Semi"
+            syn2RadioB["variable"] = freeVar
+        
+        autoAdd1CB.grid_forget()
+        autoAdd2CB.grid_forget()
+        autoAdd3CB.grid_forget()
+        autoAdd4CB.grid_forget()
+        autoAdd5CB.grid_forget()
+        autoAdd6CB.grid_forget()
+        autoAdd7CB.grid_forget()
+        autoAdd8CB.grid_forget()
+        autoAdd9CB.grid_forget()
+        autoAdd10CB.grid_forget()
+        autoAdd11CB.grid_forget()
+        autoAdd12CB.grid_forget()
+
+        hiProfileCB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
+        lowProfileCB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
+        scaleCB.grid(column=0, row=2, sticky=W, padx=5, pady=5)
+        coldCB.grid(column=0, row=3, sticky=W, padx=5, pady=5)
+        splitCB.grid(column=0, row=4, sticky=W, padx=5, pady=5)
+        AMP20CB.grid(column=0, row=5, sticky=W, padx=5, pady=5)
+        autoCB.grid(column=1, row=0, sticky=W, padx=5, pady=5)
+        ulCB.grid(column=1, row=1, sticky=W, padx=5, pady=5)
+        doorCB.grid(column=1, row=2, sticky=W, padx=5, pady=5)
+        harCB.grid(column=1, row=3, sticky=W, padx=5, pady=5)
+        add9CB.grid(column=1, row=4, sticky=W, padx=5, pady=5)
+        add10CB.grid(column=1, row=5, sticky=W, padx=5, pady=5)
+
+        macTypeVar.set(0)
+    else:
+        pass
+
 ############################################
 # Resizes window when tab is changed       #
 ############################################
@@ -49,13 +237,13 @@ def resizeWindow(*args):
         window.geometry("")
         custEntry.focus()
     elif tabText == "Data":
-        window.geometry("347x382")
+        window.geometry("358x382")
         exJobNumEntry.focus()
     elif tabText == "Print":
-        window.geometry("347x368")
+        window.geometry("358x368")
         jobEntry.focus()
     elif tabText == "About":
-        window.geometry("347x112")
+        window.geometry("358x112")
     else:
         window.geometry("")
 
@@ -70,13 +258,13 @@ def resizeWindowMan(toggle):
         window.geometry("")
         custEntry.focus()
     elif tabText == "Data":
-        window.geometry("347x382")
+        window.geometry("358x382")
         exJobNumEntry.focus()
     elif tabText == "Print":
-        window.geometry("347x368")
+        window.geometry("358x368")
         jobEntry.focus()
     elif tabText == "About":
-        window.geometry("347x112")
+        window.geometry("358x112")
     else:
         window.geometry("")
 
@@ -181,16 +369,30 @@ dateEntry.grid(column=1, row=5, sticky=tk.E, padx=5, pady=5)
 #
 # Machine Type radio buttons and frame
 #
-macVar = IntVar()
+macTypeVar = IntVar()
+# macTypeVar is 0 = Semi Auto if macTypeVar is 1 = Automatic
+macTypeVar.set(0)
+macVarS = IntVar()
+macVarS.set(0)
+macVarA = IntVar()
+macVarA.set(0)
 
 # Machine type frame
 machTypeFrame = tk.Frame(master=machineIDFrame, bg=machineFrameColor, highlightbackground=buttonColor, highlightcolor=buttonColor, highlightthickness=2)
 
-synRadioB = Radiobutton(master=machTypeFrame, text="Synergy - Semi Auto  ", font=textFont, variable=macVar, value=0, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
-synRadioB.pack()
+machStyleFrame = tk.Frame(master=machTypeFrame, bg=machineFrameColor, highlightbackground=buttonColor, highlightcolor=buttonColor, highlightthickness=2)
 
-freeRadioB = Radiobutton(master=machTypeFrame, text="Freedom - Semi Auto", font=textFont, variable=macVar, value=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
-freeRadioB.pack()
+semiAutoB = Button(master=machStyleFrame, text="Semi Auto Machines", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, relief=SUNKEN, bg=machineFrameColor, fg=textColor, command=semiConfig)
+semiAutoB.grid(column=0, row=0, padx=5, pady=5)
+
+autoB = Button(master=machStyleFrame, text="Automatic Machines", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command=autoConfig)
+autoB.grid(column=0, row=1, padx=5, pady=5)
+
+synRadioB = Radiobutton(master=machStyleFrame, text="Synergy - Semi Auto ", font=textFont, variable=macVarS, value=0, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor, command=synConfig)
+synRadioB.grid(column=1, row=0, sticky=tk.W, padx=5, pady=5)
+
+freeRadioB = Radiobutton(master=machStyleFrame, text="Freedom - Semi Auto", font=textFont, variable=macVarS, value=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor, command=freeConfig)
+freeRadioB.grid(column=1, row=1, sticky=tk.W, padx=5, pady=5)
 
 #
 # Synergy machine type frame
@@ -199,6 +401,9 @@ synFrame = ToggledFrame(parent=machTypeFrame, text="Machine Type", relief="raise
 synFrame.config(bg=machineFrameColor)
 
 synVar = IntVar()
+autoSynVar = IntVar()
+freeVar = IntVar()
+autoFreeVar = IntVar()
 
 syn2RadioB = Radiobutton(master=synFrame.sub_frame, text="Synergy 2   ", font=miniFont, variable=synVar, value=0, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
 syn2RadioB.pack()
@@ -208,6 +413,9 @@ syn2_5RadioB.pack()
 
 syn3RadioB = Radiobutton(master=synFrame.sub_frame, text="Synergy 3   ", font=miniFont, variable=synVar, value=2, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
 syn3RadioB.pack()
+
+syn4RadioB = Radiobutton(master=synFrame.sub_frame, text="Synergy 4   ", font=miniFont, variable=synVar, value=3, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+syn4RadioB.pack()
 
 #
 # Optional additions frame
@@ -242,9 +450,9 @@ splitCB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Split frame", font=m
 splitCB.grid(column=0, row=4, sticky=tk.W, padx=5, pady=5)
 
 # Additional option 9
-add4V = IntVar()
-add4CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 4", font=miniFont, variable=add4V, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
-add4CB.grid(column=0, row=5, sticky=tk.W, padx=5, pady=5)
+AMP20V = IntVar()
+AMP20CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="20 AMP", font=miniFont, variable=AMP20V, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+AMP20CB.grid(column=0, row=5, sticky=tk.W, padx=5, pady=5)
 
 # Auto film cut check button and variable
 autoVar = IntVar()
@@ -275,6 +483,43 @@ add9CB.grid(column=1, row=4, sticky=tk.W, padx=5, pady=5)
 add10V = IntVar()
 add10CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 10", font=miniFont, variable=add10V, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
 add10CB.grid(column=1, row=5, sticky=tk.W, padx=5, pady=5)
+
+# Automatic machine options
+autoAdd1Var = IntVar()
+autoAdd1CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 1", font=miniFont, variable=autoAdd1Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+
+autoAdd2Var = IntVar()
+autoAdd2CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 2", font=miniFont, variable=autoAdd2Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+
+autoAdd3Var = IntVar()
+autoAdd3CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 3", font=miniFont, variable=autoAdd3Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+
+autoAdd4Var = IntVar()
+autoAdd4CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 4", font=miniFont, variable=autoAdd4Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+
+autoAdd5Var = IntVar()
+autoAdd5CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 5", font=miniFont, variable=autoAdd5Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+
+autoAdd6Var = IntVar()
+autoAdd6CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 6", font=miniFont, variable=autoAdd6Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+
+autoAdd7Var = IntVar()
+autoAdd7CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 7", font=miniFont, variable=autoAdd7Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+
+autoAdd8Var = IntVar()
+autoAdd8CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 8", font=miniFont, variable=autoAdd8Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+
+autoAdd9Var = IntVar()
+autoAdd9CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 9", font=miniFont, variable=autoAdd9Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+
+autoAdd10Var = IntVar()
+autoAdd10CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 10", font=miniFont, variable=autoAdd10Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+
+autoAdd11Var = IntVar()
+autoAdd11CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 11", font=miniFont, variable=autoAdd11Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+
+autoAdd12Var = IntVar()
+autoAdd12CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 12", font=miniFont, variable=autoAdd12Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
 
 #
 # Utility Specs labels, text entries, and frame
@@ -505,22 +750,22 @@ licInfoLabel = tk.Label(master=programInfoFrame, text="© Highlight Industries 2
 licInfoLabel.pack()
 
 # Program version label
-versionLabel = tk.Label(master=programInfoFrame, text="Version :  v2", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+versionLabel = tk.Label(master=programInfoFrame, text="Version :  v2.1", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 versionLabel.pack()
 
 # Info date label
-infoDateLabel = tk.Label(master=programInfoFrame, text="Date :  12/20/2022", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+infoDateLabel = tk.Label(master=programInfoFrame, text="Date :  1/20/2022", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 infoDateLabel.pack()
 
 #########################
 # Buttons               #
 #########################
 # Done button
-doneButton = tk.Button(master=macButtonFrame, text="Done", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.doneCallBack(macVar, 
+doneButton = tk.Button(master=macButtonFrame, text="Done", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.doneCallBack(macVarS, 
                                                                                                                                                                                                     custEntry, distrEntry, projNumEntry, manYearEntry,
                                                                                                                                                                                                     phaseEntry, mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry,
                                                                                                                                                                                                     enginEntry, dateEntry,
-                                                                                                                                                                                                    synVar, profileVar, scaleVar, coldVar, splitVar, autoVar, ulVar, doorVar, harVar,
+                                                                                                                                                                                                    synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar,
                                                                                                                                                                                                     numRan))
 doneButton.grid(column=0, row=0, sticky=tk.E, padx=5, pady=5)
 
@@ -529,7 +774,7 @@ stopButton = tk.Button(master=macButtonFrame, text="Stop", font=miniFont, active
 stopButton.grid(column=1, row=0, sticky=tk.W, padx=5, pady=5)
 
 # Reset button
-resetButton = tk.Button(master=macButtonFrame, text="Reset", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command=lambda: callBack.resetCallBack(macVar, synVar, profileVar, scaleVar, coldVar, splitVar, autoVar, ulVar, doorVar, harVar,
+resetButton = tk.Button(master=macButtonFrame, text="Reset", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command=lambda: callBack.resetCallBack(macVarS, synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar,
                                                                                                                                                                                                     custEntry, distrEntry, projNumEntry, manYearEntry, enginEntry, dateEntry,
                                                                                                                                                                                                     phaseEntry, mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry))
 resetButton.grid(column=0, row=0, sticky=tk.W, padx=5, pady=5)
@@ -561,6 +806,7 @@ machTypeFrame.pack(fill=tk.BOTH, side=tk.TOP)
 printFrame.pack(fill=tk.BOTH, side=tk.TOP)
 jobFrame.pack(fill=tk.BOTH, side=tk.TOP)
 pageFrame.pack(fill=tk.BOTH, side=tk.TOP)
+machStyleFrame.pack(fill=tk.BOTH, side=tk.TOP)
 synFrame.pack(fill=tk.BOTH, side=tk.TOP)
 opAddFrame.pack(fill=tk.BOTH, side=tk.TOP)
 utilitySpecsFrame.pack(fill=tk.BOTH, side=tk.TOP)

@@ -1,7 +1,7 @@
 '_.zoom 0,0 102,67.5
-(command "-ATTEDIT" "Y" "HLI BORDER" "JOBNUM" "" "97.5,3" "" "V" "R" "71501" "")
-(command "-ATTEDIT" "Y" "HLI BORDER" "EGR" "" "95.3,8.4" "" "V" "R" "sss" "")
-(command "-ATTEDIT" "Y" "HLI BORDER" "DATE" "" "99.54,6.89" "" "V" "R" "02/20/2022" "")
-(command "-ATTEDIT" "Y" "HLI BORDER" "MACHINE" "" "97.6059,5.5306" "" "V" "R" "SYNERGY 3 HP" "")
+(command "-ATTEDIT" "Y" "HLI BORDER" "JOBNUM" "" "97.5,3" "" "V" "R" "41021" "")
+(command "-ATTEDIT" "Y" "HLI BORDER" "EGR" "" "95.3,8.4" "" "V" "R" "www" "")
+(command "-ATTEDIT" "Y" "HLI BORDER" "DATE" "" "99.54,6.89" "" "V" "R" "02/02/2022" "")
+(command "-ATTEDIT" "Y" "HLI BORDER" "MACHINE" "" "97.6059,5.5306" "" "V" "R" "SYNERGY 2.5 HP" "")
 (command "SAVE" "")
 (command "CLOSE")

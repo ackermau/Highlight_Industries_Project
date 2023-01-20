@@ -16,7 +16,7 @@ from tkinter import messagebox
 ########################################
 # Reset function to make gui default   #
 ########################################
-def resetCallBack(macVar, synVar, profileVar, scaleVar, coldVar, splitVar, autoVar, ulVar, doorVar, harVar,
+def resetCallBack(macVarS, synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar,
         custEntry, distrEntry, projNumEntry, manYearEntry, enginEntry, dateEntry,
         phaseEntry, mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry):
     # resetting gui to default values
@@ -39,11 +39,12 @@ def resetCallBack(macVar, synVar, profileVar, scaleVar, coldVar, splitVar, autoV
     dateEntry.delete(0, tk.END)
 
     # Variables
-    macVar.set(0)
+    macVarS.set(0)
     synVar.set(0)
     profileVar.set(0) 
     scaleVar.set(0)
     coldVar.set(0)
+    AMP20V.set(0)
     splitVar.set(0)
     autoVar.set(0)
     ulVar.set(0)
@@ -79,20 +80,20 @@ def resetCallBack(macVar, synVar, profileVar, scaleVar, coldVar, splitVar, autoV
 def doneThreadFunc(destFolder, custText, distrText, projNumText, manYearText, 
         phaseText, mainVText, controlVText, totMotorText, fullLoadText,
         enginText, dateText,
-        synVar, profileVar, scaleVar, coldVar, splitVar, autoVar, ulVar, doorVar, harVar):
+        synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar):
     # calling drawings edit method to update sheets to user input
-    drawingsEditLayers.editLayers(destFolder, custText, distrText, projNumText, manYearText, phaseText, mainVText, controlVText, totMotorText, fullLoadText, enginText, dateText, synVar, profileVar, scaleVar, coldVar, splitVar, autoVar, ulVar, doorVar, harVar)
+    drawingsEditLayers.editLayers(destFolder, custText, distrText, projNumText, manYearText, phaseText, mainVText, controlVText, totMotorText, fullLoadText, enginText, dateText, synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar)
 
 ##################################################################################
 # method that is called when user has entered all fields and clicks done button  #
 ##################################################################################
-def doneCallBack(macVar, 
+def doneCallBack(macVarS, 
         custEntry, distrEntry, projNumEntry, manYearEntry,
         phaseEntry, mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, 
         enginEntry, dateEntry,
-        synVar, profileVar, scaleVar, coldVar, splitVar, autoVar, ulVar, doorVar, harVar,
+        synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar,
         numRan):
-    if macVar.get() == 1:
+    if macVarS == 1:
         tk.messagebox.showerror(title="Work in Progress", message="Still working on Freedom machine")
         return
 
@@ -213,7 +214,7 @@ def doneCallBack(macVar,
     editThread = threading.Thread(target=doneThreadFunc, args=(destinationFolder, custText, distrText, projNumText, manYearText,
                                                             phaseText, mainLineVText, controlVText, totMotorText, fullLoadText, 
                                                             enginText, dateText, 
-                                                            synVar.get(), profileVar.get(), scaleVar.get(), coldVar.get(), splitVar.get(), autoVar.get(), ulVar.get(), doorVar.get(), harVar.get()))
+                                                            synVar.get(), profileVar.get(), scaleVar.get(), coldVar.get(), AMP20V.get(), splitVar.get(), autoVar.get(), ulVar.get(), doorVar.get(), harVar.get()))
     
     # check to see if program has been stopped or not
     if numRan == 0:
@@ -223,7 +224,7 @@ def doneCallBack(macVar,
         editThread = threading.Thread(target=doneThreadFunc, args=(destinationFolder, custText, distrText, projNumText, manYearText, 
                                                             phaseText, mainLineVText, controlVText, totMotorText, fullLoadText, 
                                                             enginText, dateText, 
-                                                            synVar.get(), profileVar.get(), scaleVar.get(), coldVar.get(), splitVar.get(), autoVar.get(), ulVar.get(), doorVar.get(), harVar.get()))
+                                                            synVar.get(), profileVar.get(), scaleVar.get(), coldVar.get(), AMP20V.get(), splitVar.get(), autoVar.get(), ulVar.get(), doorVar.get(), harVar.get()))
         editThread.start()
 
 #################################################################
@@ -467,3 +468,5 @@ def printStopCallBack(jobEntry):
     printDrawings.running = False
     tk.messagebox.showinfo(title="Program Stopped", message="Stop button was pushed and the program stopped printing " + jobEntry.get() + " Drawings.")
     printThread.join(3)
+
+

@@ -10,7 +10,7 @@ import tkinter as tk
 running = True
 
 # Functions to edit drawings by layers
-def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, totMotor, fullLoad, engin, date, syn, profile, scale, cold, split, auto, ul, door, har):
+def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, totMotor, fullLoad, engin, date, syn, profile, scale, cold, AMP20, split, auto, ul, door, har):
     scriptDir = os.getcwd() + "\\AutoCAD Script\\Synergy Semi Auto Scripts"
 
     if syn == 0:
@@ -29,7 +29,7 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
         else:
             profType = "LOW PROFILE"
             synProf = "SYNERGY 2.5 HP"
-    else:
+    elif syn == 2:
         synType = "SYNERGY 3"
         if profile == 0:
             profType = "HIGH PROFILE"
@@ -37,6 +37,14 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
         else:
             profType = "LOW PROFILE"
             synProf = "SYNERGY 3 LP"
+    else:
+        synType = "SYNERGY 4"
+        if profile == 0:
+            profType = "HIGH PROFILE"
+            synProf = "SYNERGY 4 HP"
+        else:
+            profType = "LOW PROFILE"
+            synProf = "SYNERGY 4 LP"
 
     # Wdp file
     wdpFile = folder + "\\" + projNum + " Drawings.wdp"
@@ -203,6 +211,45 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                 if "acad.exe" in (i.name() for i in psutil.process_iter()):
                     acad = Autocad()
 
+                    ###############################
+                    # AMP layers edit - p.01-32   #
+                    ###############################
+                    if running == True:
+                        if cold == 1 or AMP20 == 1:
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER ON 20AMP \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER OFF 15AMP \n\n')
+                                    break
+                                except: pass
+                        else:
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER OFF 20AMP \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER ON 15AMP \n\n')
+                                    break
+                                except: pass
+
                     ################################
                     # Cold layers edit - p.01-32   #
                     ################################
@@ -241,6 +288,14 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                     acad.doc.SendCommand('-LAYER OFF COLDSYN2_5 \n\n')
                                     break
                                 except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER OFF COLDSYN4 \n\n')
+                                    break
+                                except: pass
                     else: return
                         
                     # Cold option is turned on
@@ -265,62 +320,106 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                             
                             # Page 1 coldsyn scripts
                             if x == 1:
-                                # Synergy 3
-                                if syn == 2:
-                                    timer = time.perf_counter()
-                                    while True:
-                                        endTimer = time.perf_counter()
-                                        if (endTimer - timer) >= 60: return
-                                        try:
-                                            acad.doc.SendCommand('-LAYER ON COLDSYN2 \n\n')
-                                            break
-                                        except: pass
-                                    timer = time.perf_counter()
-                                    while True:
-                                        endTimer = time.perf_counter()
-                                        if(endTimer - timer) >= 60: return
-                                        try:
-                                            acad.doc.SendCommand('-LAYER ON COLDSYN2_5 \n\n')
-                                            break
-                                        except: pass
-                                else:
-                                    timer = time.perf_counter()
-                                    while True:
-                                        endTimer = time.perf_counter()
-                                        if (endTimer - timer) >= 60: return
-                                        try:
-                                            acad.doc.SendCommand('-LAYER OFF COLDSYN2 \n\n')
-                                            break
-                                        except: pass
-                                    timer = time.perf_counter()
-                                    while True:
-                                        endTimer = time.perf_counter()
-                                        if(endTimer - timer) >= 60: return
-                                        try:
-                                            acad.doc.SendCommand('-LAYER OFF COLDSYN2_5 \n\n')
-                                            break
-                                        except: pass
-                                # Synergy 2
-                                if syn == 0:
-                                    timer = time.perf_counter()
-                                    while True:
-                                        endTimer = time.perf_counter()
-                                        if (endTimer - timer) >= 60: return
-                                        try:
-                                            acad.doc.SendCommand('-LAYER ON COLDSYN2 \n\n')
-                                            break
-                                        except: pass
+                                if cold == 1:
+                                    # Synergy 3
+                                    if syn == 2:
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if (endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('-LAYER ON COLDSYN2 \n\n')
+                                                break
+                                            except: pass
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if(endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('-LAYER ON COLDSYN2_5 \n\n')
+                                                break
+                                            except: pass
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if (endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('-LAYER OFF COLDSYN4 \n\n')
+                                                break
+                                            except: pass
+                                    else:
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if (endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('-LAYER OFF COLDSYN2 \n\n')
+                                                break
+                                            except: pass
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if(endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('-LAYER OFF COLDSYN2_5 \n\n')
+                                                break
+                                            except: pass
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if (endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('-LAYER OFF COLDSYN4 \n\n')
+                                                break
+                                            except: pass
+                                    # Synergy 2
+                                    if syn == 0:
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if (endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('-LAYER ON COLDSYN2 \n\n')
+                                                break
+                                            except: pass
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if (endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('-LAYER OFF COLDSYN4 \n\n')
+                                                break
+                                            except: pass
 
-                                # Synergy 2.5
-                                if syn == 1:
-                                    timer = time.perf_counter()
-                                    while True:
-                                        endTimer = time.perf_counter()
-                                        if(endTimer - timer) >= 60: return
-                                        try:
-                                            acad.doc.SendCommand('-LAYER ON COLDSYN2_5 \n\n')
-                                            break
-                                        except: pass
+                                    # Synergy 2.5
+                                    if syn == 1:
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if (endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('-LAYER ON COLDSYN2_5 \n\n')
+                                                break
+                                            except: pass
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if (endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('-LAYER OFF COLDSYN4 \n\n')
+                                                break
+                                            except: pass
+
+                                    # Synergy 4
+                                    if syn == 3:
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if (endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('-LAYER ON COLDSYN4 \n\n')
+                                                break
+                                            except: pass               
                     else: return
 
                     ################################
@@ -329,6 +428,23 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                     # Scale option is turned off
                     if running == True:
                         if scale == 0:
+                            if x == 1:
+                                timer = time.perf_counter()
+                                while True:
+                                    endTimer = time.perf_counter()
+                                    if (endTimer - timer) >= 60: return
+                                    try:
+                                        acad.doc.SendCommand('-LAYER OFF 15AMPS \n\n')
+                                        break
+                                    except: pass
+                                timer = time.perf_counter()
+                                while True:
+                                    endTimer = time.perf_counter()
+                                    if (endTimer - timer) >= 60: return
+                                    try:
+                                        acad.doc.SendCommand('-LAYER OFF 20AMPS \n\n')
+                                        break
+                                    except: pass
                             timer = time.perf_counter()
                             while True:
                                 endTimer = time.perf_counter()
@@ -350,6 +466,41 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                     # Scale option is turned on
                     if running == True:
                         if scale == 1:
+                            if x == 1:
+                                if cold == 1 or syn == 3:
+                                    timer = time.perf_counter()
+                                    while True:
+                                        endTimer = time.perf_counter()
+                                        if (endTimer - timer) >= 60: return
+                                        try:
+                                            acad.doc.SendCommand('-LAYER ON 20AMPS \n\n')
+                                            break
+                                        except: pass
+                                    timer = time.perf_counter()
+                                    while True:
+                                        endTimer = time.perf_counter()
+                                        if (endTimer - timer) >= 60: return
+                                        try:
+                                            acad.doc.SendCommand('-LAYER OFF 15AMPS \n\n')
+                                            break
+                                        except: pass
+                                else:
+                                    timer = time.perf_counter()
+                                    while True:
+                                        endTimer = time.perf_counter()
+                                        if (endTimer - timer) >= 60: return
+                                        try:
+                                            acad.doc.SendCommand('-LAYER OFF 20AMPS \n\n')
+                                            break
+                                        except: pass
+                                    timer = time.perf_counter()
+                                    while True:
+                                        endTimer = time.perf_counter()
+                                        if (endTimer - timer) >= 60: return
+                                        try:
+                                            acad.doc.SendCommand('-LAYER ON 15AMPS \n\n')
+                                            break
+                                        except: pass
                             timer = time.perf_counter()
                             while True:
                                 endTimer = time.perf_counter()
@@ -585,9 +736,9 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                 except: pass
                     else: return
 
-                    ############################################
-                    # Synergy 2, 2.5, 3 layer edit - p.01-32   #
-                    ############################################
+                    ###############################################
+                    # Synergy 2, 2.5, 3, 4 layer edit - p.01-32   #
+                    ###############################################
                     # Synergy 2 option is turned on
                     if running == True:
                         if syn == 0:
@@ -607,11 +758,28 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                     acad.doc.SendCommand('-LAYER ON SYN2_3 \n\n')
                                     break
                                 except: pass
+                            timer = time.perf_counter()
                             while True:
                                 endTimer = time.perf_counter()
                                 if (endTimer - timer) >= 60: return
                                 try:
                                     acad.doc.SendCommand('-LAYER OFF SYN2_5_3 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER OFF SYN4 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER ON NOSYN4 \n\n')
                                     break
                                 except: pass
                             if x == 15:
@@ -650,6 +818,22 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                 if (endTimer - timer) >= 60: return
                                 try:
                                     acad.doc.SendCommand('-LAYER OFF SYN2_3 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER OFF SYN4 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER ON NOSYN4 \n\n')
                                     break
                                 except: pass
                             if x == 15:
@@ -700,6 +884,22 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                     acad.doc.SendCommand('-LAYER OFF SYN2 \n\n')
                                     break
                                 except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER OFF SYN4 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER ON NOSYN4 \n\n')
+                                    break
+                                except: pass
                             if x == 15:
                                 if har == 0:
                                     timer = time.perf_counter()
@@ -720,6 +920,61 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                             break
                                         except: pass
                     else: return
+
+                    # Synergy 4 option is turned on
+                    if running == True:
+                        if syn == 3:
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER ON SYN4 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER OFF NOSYN4 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER OFF SYN2_3 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER OFF SYN2_5_3 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER OFF SYN2 \n\n')
+                                    break
+                                except: pass
+                            if x == 15:
+                                timer = time.perf_counter()
+                                while True:
+                                    endTimer = time.perf_counter()
+                                    if (endTimer - timer) >= 60: return
+                                    try:
+                                        acad.doc.SendCommand('-LAYER OFF HAR \n\n')
+                                        break
+                                    except: pass
+                    else: return
+                        
 
                     ########################
                     # Table scripts - 25   #
