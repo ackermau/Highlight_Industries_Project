@@ -7,6 +7,62 @@ from tkinter import messagebox
 from tkinter import ttk
 
 #############################
+# semi auto machine class   #
+#############################
+class SemiMac:
+    def __init__(self, macVarS, custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
+                    mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, enginEntry, dateEntry,
+                    synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar, numRan):                    
+        self.macVarS = macVarS
+        self.custEntry = custEntry
+        self.distrEntry = distrEntry
+        self.projNumEntry = projNumEntry
+        self.manYearEntry = manYearEntry
+        self.phaseEntry = phaseEntry
+        self.mainLineVEntry = mainLineVEntry
+        self.controlVEntry = controlVEntry
+        self.totMotorEntry = totMotorEntry
+        self.fullLoadEntry = fullLoadEntry
+        self.enginEntry = enginEntry
+        self.dateEntry = dateEntry
+        self.synVar = synVar
+        self.profileVar = profileVar
+        self.scaleVar = scaleVar
+        self.coldVar = coldVar
+        self.AMP20V = AMP20V
+        self.splitVar = splitVar
+        self.autoVar = autoVar
+        self.ulVar = ulVar
+        self.doorVar = doorVar
+        self.harVar = harVar
+        self.numRan = numRan
+
+#############################
+# automatic machine class   #
+#############################
+class AutoMachine:
+    def __init__(self, macVarA, custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
+                    mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, enginEntry, dateEntry,
+                    motorsEVar, motorsXVar, entryDrives, exitDrives, numRan):
+        self.macVarA = macVarA
+        self.custEntry = custEntry
+        self.distrEntry = distrEntry
+        self.projNumEntry = projNumEntry
+        self.manYearEntry = manYearEntry
+        self.phaseEntry = phaseEntry
+        self.mainLineVEntry = mainLineVEntry
+        self.controlVEntry = controlVEntry
+        self.totMotorEntry = totMotorEntry
+        self.fullLoadEntry = fullLoadEntry
+        self.enginEntry = enginEntry
+        self.dateEntry = dateEntry
+        self.motorsEVar = motorsEVar
+        self.motorsXVar = motorsXVar
+        self.entryDrives = entryDrives
+        self.exitDrives = exitDrives
+        self.numRan = numRan
+
+#############################
 # collapsible frame code    #
 #############################
 class ToggledFrame(tk.Frame):
@@ -38,6 +94,26 @@ class ToggledFrame(tk.Frame):
             toggle = '+'
         resizeWindowMan(toggle=toggle)
 
+###################################################
+# button maniputlation and organization funtion   #
+###################################################
+def buttonFun(buttonType):
+    semiMachine = SemiMac(macVarS, custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
+                                mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, enginEntry, dateEntry,
+                                synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar, numRan)
+    autoMachine = AutoMachine(macVarA, custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
+                                mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, enginEntry, dateEntry,
+                                motorsEVar, motorsXVar, entryDrives, exitDrives, numRan)
+    # done button if buttonType is 0
+    if buttonType == 0:
+        if macTypeVar.get() == 0:
+            callBack.doneCallBack(semiMachine)
+        elif macTypeVar.get() == 1:
+            callBack.autoDoneCallBack(autoMachine)
+    elif buttonType == 1:
+        callBack.resetCallBack(semiMachine)
+
+
 ###############################################
 # Changes machine specs to synergy machines   #
 ###############################################
@@ -47,6 +123,7 @@ def synConfig():
         syn2RadioB["variable"] = synVar
         syn2_5RadioB.pack()
         syn3RadioB.pack()
+        syn4RadioB.pack()
 
         hiProfileCB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
         lowProfileCB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
@@ -65,14 +142,14 @@ def synConfig():
         syn2RadioB["text"] = "Synergy 5   "
         syn2RadioB["variable"] = autoSynVar
 
-        autoAdd1CB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
-        autoAdd2CB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
+        motorsECB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
+        motorsXCB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
         autoAdd3CB.grid(column=0, row=2, sticky=W, padx=5, pady=5)
         autoAdd4CB.grid(column=0, row=3, sticky=W, padx=5, pady=5)
         autoAdd5CB.grid(column=0, row=4, sticky=W, padx=5, pady=5)
         autoAdd6CB.grid(column=0, row=5, sticky=W, padx=5, pady=5)
-        autoAdd7CB.grid(column=1, row=0, sticky=W, padx=5, pady=5)
-        autoAdd8CB.grid(column=1, row=1, sticky=W, padx=5, pady=5)
+        entryDrop.grid(column=1, row=0, sticky=W, padx=5, pady=5)
+        exitDrop.grid(column=1, row=1, sticky=W, padx=5, pady=5)
         autoAdd9CB.grid(column=1, row=2, sticky=W, padx=5, pady=5)
         autoAdd10CB.grid(column=1, row=3, sticky=W, padx=5, pady=5)
         autoAdd11CB.grid(column=1, row=4, sticky=W, padx=5, pady=5)
@@ -87,6 +164,7 @@ def freeConfig():
         syn2RadioB["variable"] = freeVar
         syn2_5RadioB.pack_forget()
         syn3RadioB.pack_forget()
+        syn4RadioB.pack_forget()
 
         hiProfileCB.grid_forget()
         lowProfileCB.grid_forget()
@@ -105,14 +183,14 @@ def freeConfig():
         syn2RadioB["text"] = "Freedom 6500"
         syn2RadioB["variable"] = autoFreeVar
 
-        autoAdd1CB.grid_forget()
-        autoAdd2CB.grid_forget()
+        motorsECB.grid_forget()
+        motorsXCB.grid_forget()
         autoAdd3CB.grid_forget()
         autoAdd4CB.grid_forget()
         autoAdd5CB.grid_forget()
         autoAdd6CB.grid_forget()
-        autoAdd7CB.grid_forget()
-        autoAdd8CB.grid_forget()
+        entryDrop.grid_forget()
+        exitDrop.grid_forget()
         autoAdd9CB.grid_forget()
         autoAdd10CB.grid_forget()
         autoAdd11CB.grid_forget()
@@ -141,6 +219,7 @@ def autoConfig():
             syn2RadioB["variable"] = autoFreeVar
         syn2_5RadioB.pack_forget()
         syn3RadioB.pack_forget()
+        syn4RadioB.pack_forget()
 
         hiProfileCB.grid_forget()
         lowProfileCB.grid_forget()
@@ -155,14 +234,14 @@ def autoConfig():
         add9CB.grid_forget()
         add10CB.grid_forget()
 
-        autoAdd1CB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
-        autoAdd2CB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
+        motorsECB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
+        motorsXCB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
         autoAdd3CB.grid(column=0, row=2, sticky=W, padx=5, pady=5)
         autoAdd4CB.grid(column=0, row=3, sticky=W, padx=5, pady=5)
         autoAdd5CB.grid(column=0, row=4, sticky=W, padx=5, pady=5)
         autoAdd6CB.grid(column=0, row=5, sticky=W, padx=5, pady=5)
-        autoAdd7CB.grid(column=1, row=0, sticky=W, padx=5, pady=5)
-        autoAdd8CB.grid(column=1, row=1, sticky=W, padx=5, pady=5)
+        entryDrop.grid(column=1, row=0, sticky=W, padx=5, pady=5)
+        exitDrop.grid(column=1, row=1, sticky=W, padx=5, pady=5)
         autoAdd9CB.grid(column=1, row=2, sticky=W, padx=5, pady=5)
         autoAdd10CB.grid(column=1, row=3, sticky=W, padx=5, pady=5)
         autoAdd11CB.grid(column=1, row=4, sticky=W, padx=5, pady=5)
@@ -192,18 +271,19 @@ def semiConfig():
             syn2RadioB["variable"] = synVar
             syn2_5RadioB.pack()
             syn3RadioB.pack()
+            syn4RadioB.pack()
         elif macVarS.get() == 1:
             syn2RadioB["text"] = "Freedom Semi"
             syn2RadioB["variable"] = freeVar
         
-        autoAdd1CB.grid_forget()
-        autoAdd2CB.grid_forget()
+        motorsECB.grid_forget()
+        motorsXCB.grid_forget()
         autoAdd3CB.grid_forget()
         autoAdd4CB.grid_forget()
         autoAdd5CB.grid_forget()
         autoAdd6CB.grid_forget()
-        autoAdd7CB.grid_forget()
-        autoAdd8CB.grid_forget()
+        entryDrop.grid_forget()
+        exitDrop.grid_forget()
         autoAdd9CB.grid_forget()
         autoAdd10CB.grid_forget()
         autoAdd11CB.grid_forget()
@@ -225,6 +305,26 @@ def semiConfig():
         macTypeVar.set(0)
     else:
         pass
+
+###############################################
+# Enables/disables entry drop down menu       # 
+#  when entry drives checkbutton is clicked   #
+###############################################
+def entryDriveMan():
+    if motorsEVar.get() == 1:
+        entryDrop.config(state="normal")
+    else:
+        entryDrop.config(state="disabled")
+
+###############################################
+# Enables/disables exit drop down menu        # 
+#  when entry drives checkbutton is clicked   #
+###############################################
+def exitDriveMan():
+    if motorsXVar.get() == 1:
+        exitDrop.config(state="normal")
+    else:
+        exitDrop.config(state="disabled")
 
 ############################################
 # Resizes window when tab is changed       #
@@ -485,11 +585,11 @@ add10CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 10", font
 add10CB.grid(column=1, row=5, sticky=tk.W, padx=5, pady=5)
 
 # Automatic machine options
-autoAdd1Var = IntVar()
-autoAdd1CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 1", font=miniFont, variable=autoAdd1Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+motorsEVar = IntVar()
+motorsECB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Entry Motors", font=miniFont, variable=motorsEVar, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor, command=entryDriveMan)
 
-autoAdd2Var = IntVar()
-autoAdd2CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 2", font=miniFont, variable=autoAdd2Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+motorsXVar = IntVar()
+motorsXCB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Exit Motors", font=miniFont, variable=motorsXVar, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor, command=exitDriveMan)
 
 autoAdd3Var = IntVar()
 autoAdd3CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 3", font=miniFont, variable=autoAdd3Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
@@ -503,11 +603,22 @@ autoAdd5CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 5", fo
 autoAdd6Var = IntVar()
 autoAdd6CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 6", font=miniFont, variable=autoAdd6Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
 
-autoAdd7Var = IntVar()
-autoAdd7CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 7", font=miniFont, variable=autoAdd7Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+entryO = [1, 2, 3, 4, 5]
+exitO = [1, 2, 3, 4, 5]
 
-autoAdd8Var = IntVar()
-autoAdd8CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 8", font=miniFont, variable=autoAdd8Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+entryDrives = IntVar()
+entryDrives.set(1)
+entryDrop = tk.OptionMenu(opAddFrame.sub_frame, entryDrives, *entryO)
+entryDrop.config(font=miniFont, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, highlightbackground=buttonColor, highlightcolor=buttonColor, highlightthickness=2, relief='raised')
+entryDrop["menu"].config(font=miniFont, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor)
+entryDrop.config(state="disabled")
+
+exitDrives = IntVar()
+exitDrives.set(1)
+exitDrop = tk.OptionMenu(opAddFrame.sub_frame, exitDrives, *exitO)
+exitDrop.config(font=miniFont, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, highlightbackground=buttonColor, highlightcolor=buttonColor, highlightthickness=2, relief='raised')
+exitDrop["menu"].config(font=miniFont, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor)
+exitDrop.config(state="disabled")
 
 autoAdd9Var = IntVar()
 autoAdd9CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 9", font=miniFont, variable=autoAdd9Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
@@ -750,34 +861,26 @@ licInfoLabel = tk.Label(master=programInfoFrame, text="© Highlight Industries 2
 licInfoLabel.pack()
 
 # Program version label
-versionLabel = tk.Label(master=programInfoFrame, text="Version :  v2.1", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+versionLabel = tk.Label(master=programInfoFrame, text="Version :  v2.2", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 versionLabel.pack()
 
 # Info date label
-infoDateLabel = tk.Label(master=programInfoFrame, text="Date :  1/20/2022", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+infoDateLabel = tk.Label(master=programInfoFrame, text="Date :  2/15/2023", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 infoDateLabel.pack()
 
 #########################
 # Buttons               #
 #########################
 # Done button
-doneButton = tk.Button(master=macButtonFrame, text="Done", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.doneCallBack(macVarS, 
-                                                                                                                                                                                                    custEntry, distrEntry, projNumEntry, manYearEntry,
-                                                                                                                                                                                                    phaseEntry, mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry,
-                                                                                                                                                                                                    enginEntry, dateEntry,
-                                                                                                                                                                                                    synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar,
-                                                                                                                                                                                                    numRan))
+doneButton = tk.Button(master=macButtonFrame, text="Done", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: buttonFun(0))
 doneButton.grid(column=0, row=0, sticky=tk.E, padx=5, pady=5)
 
 # Main Stop button
-stopButton = tk.Button(master=macButtonFrame, text="Stop", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.stopCallBack(projNumEntry))
+stopButton = tk.Button(master=macButtonFrame, text="Stop", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.stopCallBack(projNumEntry, macTypeVar.get()))
 stopButton.grid(column=1, row=0, sticky=tk.W, padx=5, pady=5)
 
 # Reset button
-resetButton = tk.Button(master=macButtonFrame, text="Reset", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command=lambda: callBack.resetCallBack(macVarS, synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar,
-                                                                                                                                                                                                    custEntry, distrEntry, projNumEntry, manYearEntry, enginEntry, dateEntry,
-                                                                                                                                                                                                    phaseEntry, mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry))
-resetButton.grid(column=0, row=0, sticky=tk.W, padx=5, pady=5)
+resetButton = tk.Button(master=macButtonFrame, text="Reset", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: buttonFun(1))
 
 # Export button
 exButton = tk.Button(master=exButtonFrame, text="Export to Excel", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.exportCallBack(exJobNumEntry, exDirEntry, exportJobVar, numRan))
@@ -799,7 +902,9 @@ printButton.grid(column=0, row=0, sticky=tk.E, padx=5, pady=5)
 printStopButton = tk.Button(master=printButtonFrame, text="Stop", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.printStopCallBack(jobEntry))
 printStopButton.grid(column=1, row=0, sticky=tk.W, padx=5, pady=5)
 
-# Frame Packing
+###################
+# Frame Packing   #
+###################
 machineIDFrame.pack(anchor="n", fill=tk.BOTH, side=tk.TOP)
 infoFrame.pack(fill=tk.BOTH, side=tk.TOP)
 machTypeFrame.pack(fill=tk.BOTH, side=tk.TOP)
@@ -822,4 +927,5 @@ accessButtonFrame.pack(fill=tk.BOTH, side=tk.BOTTOM)
 accessJobFrame.pack(fill=tk.BOTH, side=tk.TOP)
 
 # Main window loop
+window.protocol("WM_DELETE_WINDOW", lambda: callBack.onClosing(window))
 window.mainloop()

@@ -10,7 +10,8 @@ import tkinter as tk
 running = True
 
 # Functions to edit drawings by layers
-def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, totMotor, fullLoad, engin, date, syn, profile, scale, cold, AMP20, split, auto, ul, door, har):
+def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, totMotor, 
+            fullLoad, engin, date, syn, profile, scale, cold, AMP20, split, auto, ul, door, har):
     scriptDir = os.getcwd() + "\\AutoCAD Script\\Synergy Semi Auto Scripts"
 
     if syn == 0:
@@ -66,6 +67,12 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
         os.startfile(dir)
         if "acad.exe" in (i.name() for i in psutil.process_iter()):
             acad = Autocad()
+
+            while True:
+                try:
+                    acad.doc.SendCommand('FILEDIA 0 \n')
+                    break
+                except: pass
 
             if running == True:
                 # Synergy type script
