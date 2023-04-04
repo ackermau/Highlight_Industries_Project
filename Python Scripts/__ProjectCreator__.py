@@ -10,10 +10,9 @@ from tkinter import ttk
 # semi auto machine class   #
 #############################
 class SemiMac:
-    def __init__(self, macVarS, custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
+    def __init__(self, custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
                     mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, enginEntry, dateEntry,
                     synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar, numRan):                    
-        self.macVarS = macVarS
         self.custEntry = custEntry
         self.distrEntry = distrEntry
         self.projNumEntry = projNumEntry
@@ -41,10 +40,9 @@ class SemiMac:
 # automatic machine class   #
 #############################
 class AutoMachine:
-    def __init__(self, macVarA, custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
+    def __init__(self, custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
                     mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, enginEntry, dateEntry,
-                    motorsEVar, motorsXVar, entryDrives, exitDrives, numRan):
-        self.macVarA = macVarA
+                    autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives, numRan):
         self.custEntry = custEntry
         self.distrEntry = distrEntry
         self.projNumEntry = projNumEntry
@@ -56,6 +54,7 @@ class AutoMachine:
         self.fullLoadEntry = fullLoadEntry
         self.enginEntry = enginEntry
         self.dateEntry = dateEntry
+        self.autoSynVar = autoSynVar
         self.motorsEVar = motorsEVar
         self.motorsXVar = motorsXVar
         self.entryDrives = entryDrives
@@ -98,12 +97,12 @@ class ToggledFrame(tk.Frame):
 # button maniputlation and organization funtion   #
 ###################################################
 def buttonFun(buttonType):
-    semiMachine = SemiMac(macVarS, custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
+    semiMachine = SemiMac(custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
                                 mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, enginEntry, dateEntry,
                                 synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar, numRan)
-    autoMachine = AutoMachine(macVarA, custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
+    autoMachine = AutoMachine(custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
                                 mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, enginEntry, dateEntry,
-                                motorsEVar, motorsXVar, entryDrives, exitDrives, numRan)
+                                autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives, numRan)
     # done button if buttonType is 0
     if buttonType == 0:
         if macTypeVar.get() == 0:
@@ -112,89 +111,6 @@ def buttonFun(buttonType):
             callBack.autoDoneCallBack(autoMachine)
     elif buttonType == 1:
         callBack.resetCallBack(semiMachine)
-
-
-###############################################
-# Changes machine specs to synergy machines   #
-###############################################
-def synConfig():
-    if macTypeVar.get() == 0:
-        syn2RadioB["text"] = "Synergy 2   "
-        syn2RadioB["variable"] = synVar
-        syn2_5RadioB.pack()
-        syn3RadioB.pack()
-        syn4RadioB.pack()
-
-        hiProfileCB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
-        lowProfileCB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
-        scaleCB.grid(column=0, row=2, sticky=W, padx=5, pady=5)
-        coldCB.grid(column=0, row=3, sticky=W, padx=5, pady=5)
-        splitCB.grid(column=0, row=4, sticky=W, padx=5, pady=5)
-        AMP20CB.grid(column=0, row=5, sticky=W, padx=5, pady=5)
-        autoCB.grid(column=1, row=0, sticky=W, padx=5, pady=5)
-        ulCB.grid(column=1, row=1, sticky=W, padx=5, pady=5)
-        doorCB.grid(column=1, row=2, sticky=W, padx=5, pady=5)
-        harCB.grid(column=1, row=3, sticky=W, padx=5, pady=5)
-        add9CB.grid(column=1, row=4, sticky=W, padx=5, pady=5)
-        add10CB.grid(column=1, row=5, sticky=W, padx=5, pady=5)
-        
-    elif macTypeVar.get() == 1:
-        syn2RadioB["text"] = "Synergy 5   "
-        syn2RadioB["variable"] = autoSynVar
-
-        motorsECB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
-        motorsXCB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
-        autoAdd3CB.grid(column=0, row=2, sticky=W, padx=5, pady=5)
-        autoAdd4CB.grid(column=0, row=3, sticky=W, padx=5, pady=5)
-        autoAdd5CB.grid(column=0, row=4, sticky=W, padx=5, pady=5)
-        autoAdd6CB.grid(column=0, row=5, sticky=W, padx=5, pady=5)
-        entryDrop.grid(column=1, row=0, sticky=W, padx=5, pady=5)
-        exitDrop.grid(column=1, row=1, sticky=W, padx=5, pady=5)
-        autoAdd9CB.grid(column=1, row=2, sticky=W, padx=5, pady=5)
-        autoAdd10CB.grid(column=1, row=3, sticky=W, padx=5, pady=5)
-        autoAdd11CB.grid(column=1, row=4, sticky=W, padx=5, pady=5)
-        autoAdd12CB.grid(column=1, row=5, sticky=W, padx=5, pady=5)
-
-###############################################
-# Changes machine specs to freedom machines   #
-###############################################
-def freeConfig():
-    if macTypeVar.get() == 0:
-        syn2RadioB["text"] = "Freedom Semi"
-        syn2RadioB["variable"] = freeVar
-        syn2_5RadioB.pack_forget()
-        syn3RadioB.pack_forget()
-        syn4RadioB.pack_forget()
-
-        hiProfileCB.grid_forget()
-        lowProfileCB.grid_forget()
-        scaleCB.grid_forget()
-        coldCB.grid_forget()
-        splitCB.grid_forget()
-        AMP20CB.grid_forget()
-        autoCB.grid_forget()
-        ulCB.grid_forget()
-        doorCB.grid_forget()
-        harCB.grid_forget()
-        add9CB.grid_forget()
-        add10CB.grid_forget()
-
-    elif macTypeVar.get() == 1:
-        syn2RadioB["text"] = "Freedom 6500"
-        syn2RadioB["variable"] = autoFreeVar
-
-        motorsECB.grid_forget()
-        motorsXCB.grid_forget()
-        autoAdd3CB.grid_forget()
-        autoAdd4CB.grid_forget()
-        autoAdd5CB.grid_forget()
-        autoAdd6CB.grid_forget()
-        entryDrop.grid_forget()
-        exitDrop.grid_forget()
-        autoAdd9CB.grid_forget()
-        autoAdd10CB.grid_forget()
-        autoAdd11CB.grid_forget()
-        autoAdd12CB.grid_forget()
 
 #########################################################
 # Changes main tab to automatic machine configuration   #
@@ -207,17 +123,10 @@ def autoConfig():
     # Label manipulation
     if macTypeVar.get() == 0:
         # Setting main tab for automatic machines
-        synRadioB["text"] = "Synergy - Automatic  "
-        synRadioB["variable"] = macVarA
-        freeRadioB["text"] = "Freedom - Automatic"
-        freeRadioB["variable"] = macVarA
-        if macVarA.get() == 0:
-            syn2RadioB["text"] = "Synergy 5   "
-            syn2RadioB["variable"] = autoSynVar
-        elif macVarA.get() == 1:
-            syn2RadioB["text"] = "Freedom 6500"
-            syn2RadioB["variable"] = autoFreeVar
-        syn2_5RadioB.pack_forget()
+        syn2RadioB["text"] = "Synergy 5       "
+        syn2RadioB["variable"] = autoSynVar
+        syn2_5RadioB["text"] = "Freedom 6500"
+        syn2_5RadioB["variable"] = autoSynVar
         syn3RadioB.pack_forget()
         syn4RadioB.pack_forget()
 
@@ -262,19 +171,12 @@ def semiConfig():
     # Lable manipulation
     if macTypeVar.get() == 1:
         # Setting main tab for semi auto machines
-        synRadioB["text"] = "Synergy - Semi Auto "
-        synRadioB["variable"] = macVarS
-        freeRadioB["text"] = "Freedom - Semi Auto"
-        freeRadioB["variable"] = macVarS
-        if macVarS.get() == 0:
-            syn2RadioB["text"] = "Synergy 2   "
-            syn2RadioB["variable"] = synVar
-            syn2_5RadioB.pack()
-            syn3RadioB.pack()
-            syn4RadioB.pack()
-        elif macVarS.get() == 1:
-            syn2RadioB["text"] = "Freedom Semi"
-            syn2RadioB["variable"] = freeVar
+        syn2RadioB["text"] = "Synergy 2   "
+        syn2RadioB["variable"] = synVar
+        syn2_5RadioB["text"] = "Synergy 2.5"
+        syn2_5RadioB["variable"] = synVar
+        syn3RadioB.pack()
+        syn4RadioB.pack()
         
         motorsECB.grid_forget()
         motorsXCB.grid_forget()
@@ -472,10 +374,6 @@ dateEntry.grid(column=1, row=5, sticky=tk.E, padx=5, pady=5)
 macTypeVar = IntVar()
 # macTypeVar is 0 = Semi Auto if macTypeVar is 1 = Automatic
 macTypeVar.set(0)
-macVarS = IntVar()
-macVarS.set(0)
-macVarA = IntVar()
-macVarA.set(0)
 
 # Machine type frame
 machTypeFrame = tk.Frame(master=machineIDFrame, bg=machineFrameColor, highlightbackground=buttonColor, highlightcolor=buttonColor, highlightthickness=2)
@@ -483,16 +381,10 @@ machTypeFrame = tk.Frame(master=machineIDFrame, bg=machineFrameColor, highlightb
 machStyleFrame = tk.Frame(master=machTypeFrame, bg=machineFrameColor, highlightbackground=buttonColor, highlightcolor=buttonColor, highlightthickness=2)
 
 semiAutoB = Button(master=machStyleFrame, text="Semi Auto Machines", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, relief=SUNKEN, bg=machineFrameColor, fg=textColor, command=semiConfig)
-semiAutoB.grid(column=0, row=0, padx=5, pady=5)
+semiAutoB.pack(fill=BOTH, side=TOP,padx=5, pady=5)
 
 autoB = Button(master=machStyleFrame, text="Automatic Machines", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command=autoConfig)
-autoB.grid(column=0, row=1, padx=5, pady=5)
-
-synRadioB = Radiobutton(master=machStyleFrame, text="Synergy - Semi Auto ", font=textFont, variable=macVarS, value=0, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor, command=synConfig)
-synRadioB.grid(column=1, row=0, sticky=tk.W, padx=5, pady=5)
-
-freeRadioB = Radiobutton(master=machStyleFrame, text="Freedom - Semi Auto", font=textFont, variable=macVarS, value=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor, command=freeConfig)
-freeRadioB.grid(column=1, row=1, sticky=tk.W, padx=5, pady=5)
+autoB.pack(fill=BOTH, side=TOP, padx=5, pady=5)
 
 #
 # Synergy machine type frame
@@ -502,8 +394,6 @@ synFrame.config(bg=machineFrameColor)
 
 synVar = IntVar()
 autoSynVar = IntVar()
-freeVar = IntVar()
-autoFreeVar = IntVar()
 
 syn2RadioB = Radiobutton(master=synFrame.sub_frame, text="Synergy 2   ", font=miniFont, variable=synVar, value=0, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
 syn2RadioB.pack()

@@ -47,7 +47,6 @@ def resetCallBack(semiMachine):
     semiMachine.dateEntry.delete(0, tk.END)
 
     # Variables
-    semiMachine.macVarS.set(0)
     semiMachine.synVar.set(0)
     semiMachine.profileVar.set(0) 
     semiMachine.scaleVar.set(0)
@@ -96,10 +95,6 @@ def doneThreadFunc(destFolder, semiMachine):
 # method that is called when user has entered all fields and clicks done button for semi machines  #
 ####################################################################################################
 def doneCallBack(semiMachine):
-    if semiMachine.macVarS.get() == 1:
-        messagebox.showerror(title="Work in Progress", message="Still working on Freedom machine")
-        return
-
     # variables and checks
     # Customer check
     if len(semiMachine.custEntry.get()) > 25:
@@ -218,18 +213,14 @@ def doneCallBack(semiMachine):
 ##########################################################
 def autoDoneThreadFunc(destFolder, autoMachine):
     # Calling auto drawings edit method to update drawing to user input
-    autoDrawingsEditLayers.editLayers(destFolder, autoMachine.macVarA.get(), autoMachine.custEntry.get(), autoMachine.distrEntry.get(), autoMachine.projNumEntry.get(), autoMachine.manYearEntry.get(), autoMachine.phaseEntry.get(),
+    autoDrawingsEditLayers.editLayers(destFolder, autoMachine.custEntry.get(), autoMachine.distrEntry.get(), autoMachine.projNumEntry.get(), autoMachine.manYearEntry.get(), autoMachine.phaseEntry.get(),
                         autoMachine.mainLineVEntry.get(), autoMachine.controlVEntry.get(), autoMachine.totMotorEntry.get(), autoMachine.fullLoadEntry.get(), autoMachine.enginEntry.get(), autoMachine.dateEntry.get(),
-                        autoMachine.motorsEVar.get(), autoMachine.motorsXVar.get(), autoMachine.entryDrives.get(), autoMachine.exitDrives.get())
+                        autoMachine.autoSynVar.get(), autoMachine.motorsEVar.get(), autoMachine.motorsXVar.get(), autoMachine.entryDrives.get(), autoMachine.exitDrives.get())
 
 ##########################################################################################################
 # method that is called when user has entered all fields and clicks done button for automatic machines   #
 ##########################################################################################################
 def autoDoneCallBack(autoMachine):
-    if autoMachine.macVarA.get() == 1:
-        messagebox.showerror(title="Work in Progress", message="Still working on Freedom 6500")
-        return
-
     # variables and checks
     # Customer variable and check
     if len(autoMachine.custEntry.get()) > 25:

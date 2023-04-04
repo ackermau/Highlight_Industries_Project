@@ -2,6 +2,6 @@
 ATTDIA 1
 ATTREQ 0
 FILEDIA 1
-EXPERT 0
+EXPERT 2
 (command "SAVE" "")
 (command "CLOSE")

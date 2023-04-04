@@ -778,6 +778,14 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                 endTimer = time.perf_counter()
                                 if (endTimer - timer) >= 60: return
                                 try:
+                                    acad.doc.SendCommand('-LAYER OFF SYN2_5_3_4 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
                                     acad.doc.SendCommand('-LAYER OFF SYN4 \n\n')
                                     break
                                 except: pass
@@ -809,6 +817,14 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                 if (endTimer - timer) >= 60: return
                                 try:
                                     acad.doc.SendCommand('-LAYER ON SYN2_5_3 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER ON SYN2_5_3_4 \n\n')
                                     break
                                 except: pass
                             timer = time.perf_counter()
@@ -881,6 +897,14 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                 if (endTimer - timer) >= 60: return
                                 try:
                                     acad.doc.SendCommand('-LAYER ON SYN2_5_3 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER ON SYN2_5_3_4 \n\n')
                                     break
                                 except: pass
                             timer = time.perf_counter()
@@ -961,6 +985,14 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                 if (endTimer - timer) >= 60: return
                                 try:
                                     acad.doc.SendCommand('-LAYER OFF SYN2_5_3 \n\n')
+                                    break
+                                except: pass
+                            timer = time.perf_counter()
+                            while True:
+                                endTimer = time.perf_counter()
+                                if (endTimer - timer) >= 60: return
+                                try:
+                                    acad.doc.SendCommand('-LAYER ON SYN2_5_3_4 \n\n')
                                     break
                                 except: pass
                             timer = time.perf_counter()

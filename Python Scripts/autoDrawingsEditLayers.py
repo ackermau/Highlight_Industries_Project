@@ -10,8 +10,8 @@ import tkinter as tk
 running = True
 
 # Functions to edit drawings by layers
-def editLayers(folder, macVarA, cust, distr, projNum, manYear, phase, mainLineV, controlV, totMotor, 
-            fullLoad, engin, date, motorsEVar, motorsXVar, entryDrives, exitDrives):
+def editLayers(folder, cust, distr, projNum, manYear, phase, mainLineV, controlV, totMotor, 
+            fullLoad, engin, date, autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives):
     scriptDir = os.getcwd() + "\\AutoCAD Script\\Synergy Automatic Scripts"
 
     ##########################
@@ -33,6 +33,7 @@ def editLayers(folder, macVarA, cust, distr, projNum, manYear, phase, mainLineV,
             ##################################
             # Synergy 5 page 0 edit script   #
             ##################################
+            # Edit Script 
             if running == True:
                 with open(scriptDir + '\\syn5AutoP0EditScript.scr', 'r') as file:
                     script = file.read()
@@ -55,6 +56,44 @@ def editLayers(folder, macVarA, cust, distr, projNum, manYear, phase, mainLineV,
                         acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\tempP0Script.scr \n')
                         break
                     except: pass
+            else: return
+            
+            # Entry Scripts
+            if running == True:
+                for i in range(1, 6):
+                    if entryDrives == i:
+                        with open(scriptDir + '\\syn5AutoP0En' + str(entryDrives) + '.scr', 'r') as file:
+                            script = file.read()
+                            script = script.replace('<PROJNUM>', projNum)
+                        with open(scriptDir + '\\tempP0Script.scr', 'w') as file:
+                            file.write(script)
+                        timer = time.perf_counter()
+                        while True:
+                            endTimer = time.perf_counter()
+                            if (endTimer - timer) >= 60: return
+                            try:
+                                acad.doc.SendCommand('SCRIPT' + scriptDir + '\\tempP0Script \n')
+                                break
+                            except: pass
+            else: return
+
+            # Exit Scripts
+            if running == True:
+                for i in range(1, 6):
+                    if exitDrives == i:
+                        with open(scriptDir + '\\syn5AutoP0En' + str(exitDrives) + '.scr', 'r') as file:
+                            script = file.read()
+                            script = script.replace('<PROJNUM>', projNum)
+                        with open(scriptDir + '\\tempP0Script.scr', 'w') as file:
+                            file.write(script)
+                        timer = time.perf_counter()
+                        while True:
+                            endTimer = time.perf_counter()
+                            if (endTimer - timer) >= 60: return
+                            try:
+                                acad.doc.SendCommand('SCRIPT' + scriptDir + '\\tempP0Script \n')
+                                break
+                            except: pass
             else: return
 
             #############################
@@ -160,6 +199,29 @@ def editLayers(folder, macVarA, cust, distr, projNum, manYear, phase, mainLineV,
                                     break
                                 except: pass
             else: return
+
+            #####################
+            # Freedom scripts   #
+            #####################
+            if autoSynVar == 1:
+                if running == True:
+                    timer = time.perf_counter()
+                    while True:
+                        endTimer = time.perf_counter()
+                        if (endTimer - timer) >= 60: return
+                        try:
+                            acad.doc.SendCommand('-LAYER F SYN5 \n\n')
+                            break
+                        except: pass
+                    timer = time.perf_counter()
+                    while True:
+                        endTimer = time.perf_counter()
+                        if (endTimer - timer) >= 60: return
+                        try:
+                            acad.doc.SendCommand('-LAYER T FREEDOM \n\n')
+                            break
+                        except: pass
+                else: return
 
             ################
             # End script   #
