@@ -11,7 +11,7 @@ running = True
 
 # Functions to edit drawings by layers
 def editLayers(folder, cust, distr, projNum, manYear, phase, mainLineV, controlV, totMotor, 
-            fullLoad, engin, date, autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives):
+            fullLoad, engin, date, autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives, autoULVar):
     scriptDir = os.getcwd() + "\\AutoCAD Script\\Synergy Automatic Scripts"
 
     ##########################
@@ -140,6 +140,7 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLineV, controlV
                                 acad.doc.SendCommand('-LAYER F NOENTRY' + str(drive) + ' \n\n')
                                 break
                             except: pass
+
                     if entryDrives < 5:
                         for drive in list(range(entryDrives + 1, 6)):
                             timer = time.perf_counter()
@@ -199,6 +200,27 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLineV, controlV
                                     break
                                 except: pass
             else: return
+
+            # UL Option
+            if running == True:
+                if autoULVar == 1:
+                    timer = time.perf_counter()
+                    while True:
+                        endTimer = time.perf_counter()
+                        if (endTimer - timer) >= 60: return
+                        try:
+                            acad.doc.SendCommand('-LAYER T UL \n\n')
+                            break
+                        except: pass
+                else:
+                    timer = time.perf_counter()
+                    while True:
+                        endTimer = time.perf_counter()
+                        if (endTimer - timer) >= 60: return
+                        try:
+                            acad.doc.SendCommand('-LAYER F UL \n\n')
+                            break
+                        except: pass
 
             #####################
             # Freedom scripts   #

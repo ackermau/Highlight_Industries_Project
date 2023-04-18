@@ -215,7 +215,7 @@ def autoDoneThreadFunc(destFolder, autoMachine):
     # Calling auto drawings edit method to update drawing to user input
     autoDrawingsEditLayers.editLayers(destFolder, autoMachine.custEntry.get(), autoMachine.distrEntry.get(), autoMachine.projNumEntry.get(), autoMachine.manYearEntry.get(), autoMachine.phaseEntry.get(),
                         autoMachine.mainLineVEntry.get(), autoMachine.controlVEntry.get(), autoMachine.totMotorEntry.get(), autoMachine.fullLoadEntry.get(), autoMachine.enginEntry.get(), autoMachine.dateEntry.get(),
-                        autoMachine.autoSynVar.get(), autoMachine.motorsEVar.get(), autoMachine.motorsXVar.get(), autoMachine.entryDrives.get(), autoMachine.exitDrives.get())
+                        autoMachine.autoSynVar.get(), autoMachine.motorsEVar.get(), autoMachine.motorsXVar.get(), autoMachine.entryDrives.get(), autoMachine.exitDrives.get(), autoMachine.autoULVar.get())
 
 ##########################################################################################################
 # method that is called when user has entered all fields and clicks done button for automatic machines   #

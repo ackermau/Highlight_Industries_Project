@@ -1158,13 +1158,22 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                             acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\29-noColdSyn2Script.scr \n')
                                             break
                                         except: pass
-                                else:
+                                elif syn == 1 or syn == 2:
                                     timer = time.perf_counter()
                                     while True:
                                         endTimer = time.perf_counter()
                                         if (endTimer - timer) >= 60: return
                                         try:
                                             acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\29-noColdOtherScript.scr \n')
+                                            break
+                                        except: pass
+                                else:
+                                    timer = time.perf_counter()
+                                    while True:
+                                        endTimer = time.perf_counter()
+                                        if (endTimer - timer) >= 60: return
+                                        try:
+                                            acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\29-noColdSyn4Script.scr \n')
                                             break
                                         except: pass
                             else:
@@ -1332,7 +1341,7 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                                 break
                                             except: pass
                                     else: pass
-                                else:
+                                elif syn == 1 or syn == 2:
                                     timer = time.perf_counter()
                                     while True:
                                         endTimer = time.perf_counter()
@@ -1361,6 +1370,35 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                                 break
                                             except: pass
                                     else: pass
+                                else:
+                                    timer = time.perf_counter()
+                                    while True:
+                                        endTimer = time.perf_counter()
+                                        if (endTimer - timer) >= 60: return
+                                        try:
+                                            acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\29-syn4Script.scr \n')
+                                            break
+                                        except: pass
+                                    # HAR + Carriage door scripts with synergy 4
+                                    if har == 0 and door == 0:
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if (endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\29-51-1Script.scr \n')
+                                                break
+                                            except: pass
+                                    elif (har == 1 and door == 0) or (har == 0 and door == 1):
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if (endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\29-51-2Script.scr \n')
+                                                break
+                                            except: pass
+                                    else: pass    
                             else: return
                     else: return
 
@@ -1379,13 +1417,22 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                         acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\32-syn2Script.scr \n')
                                         break
                                     except: pass
-                            else:
+                            elif syn == 1 or syn == 2:
                                 timer = time.perf_counter()
                                 while True:
                                     endTimer = time.perf_counter()
                                     if (endTimer - timer) >= 60: return
                                     try:
                                         acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\32-otherSynScript.scr \n')
+                                        break
+                                    except: pass
+                            else: 
+                                timer = time.perf_counter()
+                                while True:
+                                    endTimer = time.perf_counter()
+                                    if (endTimer - timer) >= 60: return
+                                    try:
+                                        acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\32-syn4Script.scr \n')
                                         break
                                     except: pass
                             
@@ -1410,13 +1457,22 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                                 acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\32-syn2NoColdScript.scr \n')
                                                 break
                                             except: pass
-                                    else:
+                                    elif syn == 1 or syn == 2:
                                         timer = time.perf_counter()
                                         while True:
                                             endTimer = time.perf_counter()
                                             if (endTimer - timer) >= 60: return
                                             try:
                                                 acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\32-synONoColdScript.scr \n')
+                                                break
+                                            except: pass
+                                    else:
+                                        timer = time.perf_counter()
+                                        while True:
+                                            endTimer = time.perf_counter()
+                                            if (endTimer - timer) >= 60: return
+                                            try:
+                                                acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\32-syn4NoColdScript.scr \n')
                                                 break
                                             except: pass
                                 else:
@@ -1468,7 +1524,7 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                         acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\30-syn2Script.scr \n')
                                         break
                                     except: pass
-                            else:
+                            elif syn == 1 or syn == 2:
                                 timer = time.perf_counter()
                                 while True:
                                     endTimer = time.perf_counter()

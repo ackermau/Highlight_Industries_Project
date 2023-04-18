@@ -42,7 +42,7 @@ class SemiMac:
 class AutoMachine:
     def __init__(self, custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
                     mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, enginEntry, dateEntry,
-                    autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives, numRan):
+                    autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives, autoULVar, numRan):
         self.custEntry = custEntry
         self.distrEntry = distrEntry
         self.projNumEntry = projNumEntry
@@ -59,6 +59,7 @@ class AutoMachine:
         self.motorsXVar = motorsXVar
         self.entryDrives = entryDrives
         self.exitDrives = exitDrives
+        self.autoULVar = autoULVar
         self.numRan = numRan
 
 #############################
@@ -102,7 +103,7 @@ def buttonFun(buttonType):
                                 synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar, numRan)
     autoMachine = AutoMachine(custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
                                 mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, enginEntry, dateEntry,
-                                autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives, numRan)
+                                autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives, autoULVar, numRan)
     # done button if buttonType is 0
     if buttonType == 0:
         if macTypeVar.get() == 0:
@@ -145,7 +146,7 @@ def autoConfig():
 
         motorsECB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
         motorsXCB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
-        autoAdd3CB.grid(column=0, row=2, sticky=W, padx=5, pady=5)
+        autoULCB.grid(column=0, row=2, sticky=W, padx=5, pady=5)
         autoAdd4CB.grid(column=0, row=3, sticky=W, padx=5, pady=5)
         autoAdd5CB.grid(column=0, row=4, sticky=W, padx=5, pady=5)
         autoAdd6CB.grid(column=0, row=5, sticky=W, padx=5, pady=5)
@@ -180,7 +181,7 @@ def semiConfig():
         
         motorsECB.grid_forget()
         motorsXCB.grid_forget()
-        autoAdd3CB.grid_forget()
+        autoULCB.grid_forget()
         autoAdd4CB.grid_forget()
         autoAdd5CB.grid_forget()
         autoAdd6CB.grid_forget()
@@ -481,8 +482,8 @@ motorsECB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Entry Motors", fon
 motorsXVar = IntVar()
 motorsXCB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Exit Motors", font=miniFont, variable=motorsXVar, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor, command=exitDriveMan)
 
-autoAdd3Var = IntVar()
-autoAdd3CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 3", font=miniFont, variable=autoAdd3Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+autoULVar = IntVar()
+autoULCB = tk.Checkbutton(master=opAddFrame.sub_frame, text="UL Option", font=miniFont, variable=autoULVar, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
 
 autoAdd4Var = IntVar()
 autoAdd4CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 4", font=miniFont, variable=autoAdd4Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
@@ -751,11 +752,11 @@ licInfoLabel = tk.Label(master=programInfoFrame, text="© Highlight Industries 2
 licInfoLabel.pack()
 
 # Program version label
-versionLabel = tk.Label(master=programInfoFrame, text="Version :  v2.2", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+versionLabel = tk.Label(master=programInfoFrame, text="Version :  v2.5", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 versionLabel.pack()
 
 # Info date label
-infoDateLabel = tk.Label(master=programInfoFrame, text="Date :  2/15/2023", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+infoDateLabel = tk.Label(master=programInfoFrame, text="Date :  4/18/2023", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 infoDateLabel.pack()
 
 #########################
