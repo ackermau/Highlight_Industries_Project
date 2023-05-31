@@ -8,7 +8,7 @@ from tkinter import messagebox
 # Global variables
 running = True
 
-# Prints all pages desired from a specific job
+# Prints all pages from a specific job
 def printAllDrawings(jobNum, dir):
     scriptDir = os.getcwd() + '\\AutoCAD Script\\Synergy Semi Auto Scripts'
     # getting only dwg files

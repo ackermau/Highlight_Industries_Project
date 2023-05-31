@@ -17,7 +17,7 @@ EXPERT 2
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "63.6761,0.5846" "" "V" "R" "<DATE>" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "68.7082,0.2105" "" "V" "R" "<PROJNUM>-E02" "")
 '_zoom 86,2 97,-1
-(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "88.7099,0.8253" "" "V" "R" "<ENGINIT>" "")
+(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "88.7431,0.8253" "" "V" "R" "<ENGINIT>" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "88.7819,0.5735" "" "V" "R" "<DATE>" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "93.8573,0.2137" "" "V" "R" "<PROJNUM>-E03" "")
 '_zoom 111,2 122,-1
@@ -25,11 +25,11 @@ EXPERT 2
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "113.8786,0.5727" "" "V" "R" "<DATE>" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "118.9569,0.2462" "" "V" "R" "<PROJNUM>-E04" "")
 '_zoom 11,-19 22,-22
-(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "13.3438,-20.1762" "" "V" "R" "<ENGINIT>" "")
+(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "13.2955,-20.1762" "" "V" "R" "<ENGINIT>" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "13.4277,-20.4278" "" "V" "R" "<DATE>" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "18.4509,-20.7789" "" "V" "R" "<PROJNUM>-E05" "")
 '_zoom 36,-19 47,-22
-(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "38.4794,-20.1799" "" "V" "R" "<ENGINIT>" "")
+(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "38.4169,-20.1799" "" "V" "R" "<ENGINIT>" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "38.5485,-20.4245" "" "V" "R" "<DATE>" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "43.5765,-20.7861" "" "V" "R" "<PROJNUM>-E06" "")
 '_zoom 61,-19 72,-22

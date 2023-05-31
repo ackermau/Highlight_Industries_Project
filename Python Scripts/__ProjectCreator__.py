@@ -42,7 +42,7 @@ class SemiMac:
 class AutoMachine:
     def __init__(self, custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
                     mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, enginEntry, dateEntry,
-                    autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives, autoULVar, numRan):
+                    autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives, autoULVar, forkLiftVar, wzLiftVar, numRan):
         self.custEntry = custEntry
         self.distrEntry = distrEntry
         self.projNumEntry = projNumEntry
@@ -60,6 +60,8 @@ class AutoMachine:
         self.entryDrives = entryDrives
         self.exitDrives = exitDrives
         self.autoULVar = autoULVar
+        self.forkLiftVar = forkLiftVar
+        self.wzLiftVar = wzLiftVar
         self.numRan = numRan
 
 #############################
@@ -103,7 +105,7 @@ def buttonFun(buttonType):
                                 synVar, profileVar, scaleVar, coldVar, AMP20V, splitVar, autoVar, ulVar, doorVar, harVar, numRan)
     autoMachine = AutoMachine(custEntry, distrEntry, projNumEntry, manYearEntry, phaseEntry,
                                 mainLineVEntry, controlVEntry, totMotorEntry, fullLoadEntry, enginEntry, dateEntry,
-                                autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives, autoULVar, numRan)
+                                autoSynVar, motorsEVar, motorsXVar, entryDrives, exitDrives, autoULVar, forkLiftVar, wzLiftVar, numRan)
     # done button if buttonType is 0
     if buttonType == 0:
         if macTypeVar.get() == 0:
@@ -112,6 +114,31 @@ def buttonFun(buttonType):
             callBack.autoDoneCallBack(autoMachine)
     elif buttonType == 1:
         callBack.resetCallBack(semiMachine)
+
+###################################################
+# Automatic machine type switching (to Freedom)   #
+###################################################
+def autoFreedomConfig():
+    # Label manipulation
+    if macTypeVar.get() == 1:
+        # Setting additional option 5 to wrap zone lift option
+        wzLiftCB["text"] = "Wrap Zone Lift"
+        wzLiftCB["variable"] = wzLiftVar
+        wzLiftVar.set(0)
+        wzLiftCB["onvalue"] = 1
+    else: pass
+
+###################################################
+# Automatic machine type switching (to Synergy)   #
+###################################################
+def autoSynergyConfig():
+    # Label manipulation
+    if macTypeVar.get() == 1:
+        # Setting wrap zone lift option to additional option 5
+        wzLiftCB["text"] = "Additional 5"
+        wzLiftCB["variable"] = 0
+        wzLiftCB["onvalue"] = 2
+    else: pass
 
 #########################################################
 # Changes main tab to automatic machine configuration   #
@@ -126,8 +153,10 @@ def autoConfig():
         # Setting main tab for automatic machines
         syn2RadioB["text"] = "Synergy 5       "
         syn2RadioB["variable"] = autoSynVar
+        syn2RadioB["command"] = autoSynergyConfig
         syn2_5RadioB["text"] = "Freedom 6500"
         syn2_5RadioB["variable"] = autoSynVar
+        syn2_5RadioB["command"] = autoFreedomConfig
         syn3RadioB.pack_forget()
         syn4RadioB.pack_forget()
 
@@ -147,8 +176,11 @@ def autoConfig():
         motorsECB.grid(column=0, row=0, sticky=W, padx=5, pady=5)
         motorsXCB.grid(column=0, row=1, sticky=W, padx=5, pady=5)
         autoULCB.grid(column=0, row=2, sticky=W, padx=5, pady=5)
-        autoAdd4CB.grid(column=0, row=3, sticky=W, padx=5, pady=5)
-        autoAdd5CB.grid(column=0, row=4, sticky=W, padx=5, pady=5)
+        forkLiftCB.grid(column=0, row=3, sticky=W, padx=5, pady=5)
+        wzLiftCB.grid(column=0, row=4, sticky=W, padx=5, pady=5)
+        if autoSynVar.get() == 0:
+            wzLiftCB["text"] = "Additional 5"
+            wzLiftCB["variable"] = 0
         autoAdd6CB.grid(column=0, row=5, sticky=W, padx=5, pady=5)
         entryDrop.grid(column=1, row=0, sticky=W, padx=5, pady=5)
         exitDrop.grid(column=1, row=1, sticky=W, padx=5, pady=5)
@@ -182,8 +214,8 @@ def semiConfig():
         motorsECB.grid_forget()
         motorsXCB.grid_forget()
         autoULCB.grid_forget()
-        autoAdd4CB.grid_forget()
-        autoAdd5CB.grid_forget()
+        forkLiftCB.grid_forget()
+        wzLiftCB.grid_forget()
         autoAdd6CB.grid_forget()
         entryDrop.grid_forget()
         exitDrop.grid_forget()
@@ -243,7 +275,7 @@ def resizeWindow(*args):
         window.geometry("358x382")
         exJobNumEntry.focus()
     elif tabText == "Print":
-        window.geometry("358x368")
+        window.geometry("358x428")
         jobEntry.focus()
     elif tabText == "About":
         window.geometry("358x112")
@@ -264,7 +296,7 @@ def resizeWindowMan(toggle):
         window.geometry("358x382")
         exJobNumEntry.focus()
     elif tabText == "Print":
-        window.geometry("358x368")
+        window.geometry("358x428")
         jobEntry.focus()
     elif tabText == "About":
         window.geometry("358x112")
@@ -485,11 +517,11 @@ motorsXCB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Exit Motors", font
 autoULVar = IntVar()
 autoULCB = tk.Checkbutton(master=opAddFrame.sub_frame, text="UL Option", font=miniFont, variable=autoULVar, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
 
-autoAdd4Var = IntVar()
-autoAdd4CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 4", font=miniFont, variable=autoAdd4Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+forkLiftVar = IntVar()
+forkLiftCB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Forklift Option", font=miniFont, variable=forkLiftVar, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
 
-autoAdd5Var = IntVar()
-autoAdd5CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 5", font=miniFont, variable=autoAdd5Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+wzLiftVar = IntVar()
+wzLiftCB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Wrap Zone Lift", font=miniFont, variable=wzLiftVar, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
 
 autoAdd6Var = IntVar()
 autoAdd6CB = tk.Checkbutton(master=opAddFrame.sub_frame, text="Additional 6", font=miniFont, variable=autoAdd6Var, offvalue=0, onvalue=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
@@ -717,6 +749,19 @@ psRadioButton.grid(column=0, row=1, sticky=tk.W, padx=0, pady=0)
 paRadioButton = tk.Radiobutton(master=pageFrame, text="Print all", variable=paVar, value=1, fg=textColor, bg=machineFrameColor, font=textFont, selectcolor=machineFrameColor, command= lambda: entryMan.disablePEntry(pagesEntry))
 paRadioButton.grid(column=0, row=2, sticky=tk.W, padx=0, pady=0)
 
+# Machine print style frame
+machPrintStyleFrame = tk.Frame(master=printFrame, bg=machineFrameColor, highlightbackground=buttonColor, highlightcolor=buttonColor, highlightthickness=2)
+machPrintStyleFrame.columnconfigure(0, weight=1)
+
+macStyleVar = IntVar()
+
+# Print frame machine style buttons (semi auto or auto)
+semiAutoStyleRB = tk.Radiobutton(master=machPrintStyleFrame, text="Semi Auto Style", font=miniFont, variable=macStyleVar, value=0, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+semiAutoStyleRB.pack()
+
+autoStyleRB = tk.Radiobutton(master=machPrintStyleFrame, text="Auto Style", font=miniFont, variable=macStyleVar, value=1, bg=machineFrameColor, fg=textColor, activebackground=buttonColor, activeforeground=textColor, selectcolor=machineFrameColor)
+autoStyleRB.pack()
+
 # Printer frame
 printerFrame = tk.Frame(master=printFrame, bg=machineFrameColor, highlightbackground=buttonColor, highlightcolor=buttonColor, highlightthickness=2)
 printerFrame.columnconfigure(0, weight=1)
@@ -748,15 +793,15 @@ printerComboBox.grid(column=0, row=1, sticky=tk.W, padx=12, pady=5)
 programInfoFrame = tk.Frame(master=infoTab, bg=machineFrameColor, highlightbackground=buttonColor, highlightcolor=buttonColor, highlightthickness=4)
 
 # License label
-licInfoLabel = tk.Label(master=programInfoFrame, text="© Highlight Industries 2022", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+licInfoLabel = tk.Label(master=programInfoFrame, text="© Highlight Industries 2022-23", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 licInfoLabel.pack()
 
 # Program version label
-versionLabel = tk.Label(master=programInfoFrame, text="Version :  v2.5", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+versionLabel = tk.Label(master=programInfoFrame, text="Version :  v3.1", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 versionLabel.pack()
 
 # Info date label
-infoDateLabel = tk.Label(master=programInfoFrame, text="Date :  4/18/2023", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+infoDateLabel = tk.Label(master=programInfoFrame, text="Date :  5/31/2023", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 infoDateLabel.pack()
 
 #########################
@@ -786,7 +831,7 @@ accessButton = tk.Button(master=accessButtonFrame, text="Import to Access", font
 accessButton.grid(column=0, row=0, padx=5, pady=5)
 
 # Print button
-printButton = tk.Button(master=printButtonFrame, text="Print", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.printCallBack(dirEntry, jobEntry, pagesEntry, printerVar, jobVar, paVar, numRan))
+printButton = tk.Button(master=printButtonFrame, text="Print", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.printCallBack(dirEntry, jobEntry, pagesEntry, printerVar, jobVar, paVar, macStyleVar, numRan))
 printButton.grid(column=0, row=0, sticky=tk.E, padx=5, pady=5)
 
 # Print Stop button
@@ -810,6 +855,7 @@ exFrame.pack(fill=tk.BOTH, side=tk.TOP)
 exportFrame.pack(fill=tk.BOTH, side=tk.TOP)
 programInfoFrame.pack(fill=tk.BOTH, side=tk.TOP)
 printerFrame.pack(fill=tk.BOTH, side=tk.TOP)
+machPrintStyleFrame.pack(fill=tk.BOTH, side=tk.TOP)
 macButtonFrame.pack(fill=tk.BOTH, side=tk.BOTTOM)
 printButtonFrame.pack(fill=tk.BOTH, side=tk.BOTTOM)
 exButtonFrame.pack(fill=tk.BOTH, side=tk.TOP)

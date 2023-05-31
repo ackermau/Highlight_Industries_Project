@@ -9,6 +9,7 @@ import directoryFinder
 import exportAccessDrawings
 import drawingsEditLayers
 import autoDrawingsEditLayers
+import printAutoDrawings
 import re
 import threading
 from tkinter import *
@@ -215,7 +216,7 @@ def autoDoneThreadFunc(destFolder, autoMachine):
     # Calling auto drawings edit method to update drawing to user input
     autoDrawingsEditLayers.editLayers(destFolder, autoMachine.custEntry.get(), autoMachine.distrEntry.get(), autoMachine.projNumEntry.get(), autoMachine.manYearEntry.get(), autoMachine.phaseEntry.get(),
                         autoMachine.mainLineVEntry.get(), autoMachine.controlVEntry.get(), autoMachine.totMotorEntry.get(), autoMachine.fullLoadEntry.get(), autoMachine.enginEntry.get(), autoMachine.dateEntry.get(),
-                        autoMachine.autoSynVar.get(), autoMachine.motorsEVar.get(), autoMachine.motorsXVar.get(), autoMachine.entryDrives.get(), autoMachine.exitDrives.get(), autoMachine.autoULVar.get())
+                        autoMachine.autoSynVar.get(), autoMachine.motorsEVar.get(), autoMachine.motorsXVar.get(), autoMachine.entryDrives.get(), autoMachine.exitDrives.get(), autoMachine.autoULVar.get(), autoMachine.forkLiftVar.get(), autoMachine.wzLiftVar.get())
 
 ##########################################################################################################
 # method that is called when user has entered all fields and clicks done button for automatic machines   #
@@ -296,13 +297,13 @@ def autoDoneCallBack(autoMachine):
         else: return
 
     # Copies original schematic to new folder
-    source = sourceFolder + "\\800500 - Synergy 5 Auto Schematics.dwg"
-    destination = destinationFolder + "\\800500 - Synergy 5 Auto Schematics.dwg"
+    source = sourceFolder + "\\800500 - Automatic Machines Schematics.dwg"
+    destination = destinationFolder + "\\800500 - Automatic Machines Schematics.dwg"
     if os.path.isfile(source):
         shutil.copy(source, destination)
 
     # Renames new folders file to match user inputs
-    os.rename(destinationFolder + "\\800500 - Synergy 5 Auto Schematics.dwg", destinationFolder + "\\" + autoMachine.projNumEntry.get() + " Schematics.dwg")
+    os.rename(destinationFolder + "\\800500 - Automatic Machines Schematics.dwg", destinationFolder + "\\" + autoMachine.projNumEntry.get() + " Schematics.dwg")
     
     # Setting running to true for auto drawings edit script
     autoDrawingsEditLayers.running = True
@@ -444,33 +445,55 @@ def accessCallBack(accessJobEntry, accessDirEntry, accessJobVar):
 #######################################################
 # Threading function for printCallBack to help stop   #
 #######################################################
-def printThreadFunc(jobNum, jobVar, dir, mDir, pages, paVar):
-    # Calling print drawings method to user specified pages
-    # case 1: automatic finder with print all pages
-    if jobVar.get() == 0 and paVar.get() == 1:
-        printDrawings.printAllDrawings(jobNum, dir)
+def printThreadFunc(jobNum, jobVar, dir, mDir, pages, paVar, macStyleVar):
+    # Calling print drawings method with specified style to user specified pages
+    if macStyleVar.get() == 0:
+        # case 1: automatic finder with print all pages
+        if jobVar.get() == 0 and paVar.get() == 1:
+            printDrawings.printAllDrawings(jobNum, dir)
 
-    # case 2: manual directory with print all pages
-    elif jobVar.get() == 1 and paVar.get() == 1:
-        printDrawings.printAllDrawings(jobNum, mDir)
+        # case 2: manual directory with print all pages
+        elif jobVar.get() == 1 and paVar.get() == 1:
+            printDrawings.printAllDrawings(jobNum, mDir)
 
-    # case 3: automatic finder with selected pages
-    elif jobVar.get() == 0 and paVar.get() == 0:
-        printDrawings.printSelDrawings(jobNum, dir, pages)
+        # case 3: automatic finder with selected pages
+        elif jobVar.get() == 0 and paVar.get() == 0:
+            printDrawings.printSelDrawings(jobNum, dir, pages)
 
-    # case 4: manual directory with selected pages
-    elif jobVar.get() == 1 and paVar.get() == 0:
-        printDrawings.printSelDrawings(jobNum, mDir, pages)
-    
-    # error
+        # case 4: manual directory with selected pages
+        elif jobVar.get() == 1 and paVar.get() == 0:
+            printDrawings.printSelDrawings(jobNum, mDir, pages)
+        
+        # error
+        else:
+            messagebox.showerror(title="Error", message="Variables set to impossible values")
+            return
     else:
-        messagebox.showerror(title="Error", message="This error should not happen")
-        return
+        # case 1: automatic finder with print all pages
+        if jobVar.get() == 0 and paVar.get() == 1:
+            printAutoDrawings.printAllDrawings(jobNum, dir)
+
+        # case 2: manual directory with print all pages
+        elif jobVar.get() == 1 and paVar.get() == 1:
+            printAutoDrawings.printAllDrawings(jobNum, mDir)
+        
+        # case 3: automatic finder with selectred pages
+        elif jobVar.get() == 0 and paVar.get() == 0:
+            printAutoDrawings.printSelDrawings(jobNum, dir, pages)
+        
+        #case 4: manual directory with selected pages
+        elif jobVar.get() == 1 and paVar.get() == 0:
+            printAutoDrawings.printSelDrawings(jobNum, mDir, pages)
+
+        # error
+        else:
+            messagebox.showerror(title="Error", message="Variables set to impossible values")
+            return
 
 ########################################################################
 # Method called when user fills out the print tab and presses print    #
 ########################################################################
-def printCallBack(dirEntry, jobEntry, pagesEntry, printerVar, jobVar, paVar, numRan):
+def printCallBack(dirEntry, jobEntry, pagesEntry, printerVar, jobVar, paVar, macStyleVar, numRan):
     # variables and checks
     mDir = dirEntry.get()
     jobNum = jobEntry.get()
@@ -524,7 +547,10 @@ def printCallBack(dirEntry, jobEntry, pagesEntry, printerVar, jobVar, paVar, num
         return
 
     # check to confirm manual directory exists
-    mTestFile = mDir + "\\" + jobNum + "_Sheet00.dwg"
+    if macStyleVar.get() == 0:
+        mTestFile = mDir + "\\" + jobNum + "_Sheet00.dwg"
+    else:
+        mTestFile = mDir + "\\" + jobNum + " Schematics.dwg"
     if os.path.isfile(mTestFile) == False and jobVar.get() == 1:
         messagebox.showerror(title="Invalid Directory", message="Manual directory is invalid, please try again")
         return
@@ -536,33 +562,43 @@ def printCallBack(dirEntry, jobEntry, pagesEntry, printerVar, jobVar, paVar, num
 
     if '\\\\server\\' in printer:
         printer = '\\\\\\\\server\\\\EE - Sharp MX-3501N'
-    # setting printer in printing script
-    with open(os.getcwd() + '\\AutoCAD Script\\Synergy Semi Auto Scripts\\printScript.scr', 'r') as file:
-        script = file.read()
-        script = script.replace('<PRINTER>', printer)
-    with open(os.getcwd() + '\\AutoCAD Script\\Synergy Semi Auto Scripts\\newPrintScript.scr', 'w') as file:
-        file.write(script)
+    if macStyleVar.get() == 0:
+        # setting printer in printing script for semi auto 
+        with open(os.getcwd() + '\\AutoCAD Script\\Synergy Semi Auto Scripts\\printScript.scr', 'r') as file:
+            script = file.read()
+            script = script.replace('<PRINTER>', printer)
+        with open(os.getcwd() + '\\AutoCAD Script\\Synergy Semi Auto Scripts\\newPrintScript.scr', 'w') as file:
+            file.write(script)
+    else:
+        # setting printer in printing script for automatic
+        with open(os.getcwd() + '\\AutoCAD Script\\Synergy Automatic Scripts\\printScript.scr', 'r') as file:
+            script = file.read()
+            script = script.replace('<PRINTER>', printer)
+        with open(os.getcwd() + '\\AutoCAD Script\\Synergy Automatic Scripts\\newPrintScript.scr', 'w') as file:
+            file.write(script)
 
     # Setting running to true for print drawings
     printDrawings.running = True
+    printAutoDrawings.running = True
 
     # Creation of print thread to integrate stop button
     global printThread
-    printThread = threading.Thread(target=printThreadFunc, args=(jobNum, jobVar, dir, mDir, pages, paVar))
+    printThread = threading.Thread(target=printThreadFunc, args=(jobNum, jobVar, dir, mDir, pages, paVar, macStyleVar))
 
     # Check to see if the program has been stopped or not
     if numRan == 0:
         printThread.start()
         numRan = 1
     else:
-        printThread = threading.Thread(target=printThreadFunc, args=(jobNum, jobVar, dir, mDir, pages, paVar))
+        printThread = threading.Thread(target=printThreadFunc, args=(jobNum, jobVar, dir, mDir, pages, paVar, macStyleVar))
         printThread.start()
 
-#############################################################
-# Method called when use presses stop button on print tab   #
-#############################################################
+##############################################################
+# Method called when user presses stop button on print tab   #
+##############################################################
 def printStopCallBack(jobEntry):
     printDrawings.running = False
+    printAutoDrawings.running = False
     messagebox.showinfo(title="Program Stopped", message="Stop button was pushed and the program stopped printing " + jobEntry.get() + " Drawings.")
     printThread.join(3)
 
