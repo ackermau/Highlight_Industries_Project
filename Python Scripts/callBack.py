@@ -302,9 +302,16 @@ def autoDoneCallBack(autoMachine):
     if os.path.isfile(source):
         shutil.copy(source, destination)
 
+    # Copies origional enclosure to new folder
+    source = sourceFolder + "\\800501 - Automatic Machines Enclosures.dwg"
+    destination = destinationFolder + "\\800501 - Automatic Machines Enclosures.dwg"
+    if os.path.isfile(source):
+        shutil.copy(source, destination)
+
     # Renames new folders file to match user inputs
     os.rename(destinationFolder + "\\800500 - Automatic Machines Schematics.dwg", destinationFolder + "\\" + autoMachine.projNumEntry.get() + " Schematics.dwg")
-    
+    os.rename(destinationFolder + "\\800501 - Automatic Machines Enclosures.dwg", destinationFolder + "\\" + autoMachine.projNumEntry.get() + " Enclosures.dwg")
+
     # Setting running to true for auto drawings edit script
     autoDrawingsEditLayers.running = True
 
@@ -325,13 +332,15 @@ def autoDoneCallBack(autoMachine):
 #################################################################
 def stopCallBack(projNumEntry, macType):
     if macType == 0:
-        drawingsEditLayers.running = False
-        messagebox.showinfo(title="Program Stopped", message="Stop button was pushed and the program stopped editing " + projNumEntry.get() + " Drawings.")
-        editThread.join(3)
+        if drawingsEditLayers.running == True:
+            drawingsEditLayers.running = False
+            messagebox.showinfo(title="Program Stopped", message="Stop button was pushed and the program stopped editing " + projNumEntry.get() + " Drawings.")
+            editThread.join(3)
     else:
-        autoDrawingsEditLayers.running = False
-        messagebox.showinfo(title="Program Stopped", message="Stop button was pushed and the program stopeed editing " + projNumEntry.get() + " Drawings.")
-        autoEditThread.join(3)
+        if autoDrawingsEditLayers.running == True:
+            autoDrawingsEditLayers.running = False
+            messagebox.showinfo(title="Program Stopped", message="Stop button was pushed and the program stopeed editing " + projNumEntry.get() + " Drawings.")
+            autoEditThread.join(3)
 
 ########################################################
 # Threading function for exportCallBack to help stop   #
@@ -398,8 +407,9 @@ def exportCallBack(exJobNumEntry, exDirEntry, exportJobVar, numRan):
 # Method called when user presses stop button in export tab   #
 ###############################################################
 def exStopCallBack(exJobNumEntry):
-    exExcelMan.running = False
-    messagebox.showinfo(title="Program Stopped", message="Stop button was pushed and the program stopped exporting " + exJobNumEntry.get() + " Drawings.")
+    if exExcelMan.running == True:
+        exExcelMan.running = False
+        messagebox.showinfo(title="Program Stopped", message="Stop button was pushed and the program stopped exporting " + exJobNumEntry.get() + " Drawings.")
 
 ##########################################################################
 # Method called when user fills out the access tab and presses access    #
@@ -596,10 +606,14 @@ def printCallBack(dirEntry, jobEntry, pagesEntry, printerVar, jobVar, paVar, mac
 ##############################################################
 # Method called when user presses stop button on print tab   #
 ##############################################################
-def printStopCallBack(jobEntry):
-    printDrawings.running = False
-    printAutoDrawings.running = False
-    messagebox.showinfo(title="Program Stopped", message="Stop button was pushed and the program stopped printing " + jobEntry.get() + " Drawings.")
-    printThread.join(3)
-
-
+def printStopCallBack(jobEntry, macType):
+    if macType == 0:
+        if printDrawings.running == True:
+            printDrawings.running = False
+            messagebox.showinfo(title="Program Stopped", message="Stop button was pushed and the program stopped printing " + jobEntry.get() + " Drawings.")
+            printThread.join(3)
+    else:
+        if printAutoDrawings.running == True:
+            printAutoDrawings.running = False
+            messagebox.showinfo(title="Program Stopped", message="Stop button was pushed and the program stopped printing " + jobEntry.get() + " Drawings.")
+            printThread.join(3)

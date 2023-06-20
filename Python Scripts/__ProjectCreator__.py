@@ -611,7 +611,7 @@ exportFrame = tk.Frame(master=exFrame, bg=machineFrameColor, highlightbackground
 exportFrame.columnconfigure(0, weight=1)
 exportFrame.columnconfigure(1, weight=3)
 
-# Eport button frame
+# Export button frame
 exButtonFrame = tk.Frame(master=exFrame, bg=machineFrameColor, highlightbackground=buttonColor, highlightcolor=buttonColor, highlightthickness=2)
 exButtonFrame.columnconfigure(0, weight=1)
 exButtonFrame.columnconfigure(1, weight=1)
@@ -797,11 +797,11 @@ licInfoLabel = tk.Label(master=programInfoFrame, text="© Highlight Industries 2
 licInfoLabel.pack()
 
 # Program version label
-versionLabel = tk.Label(master=programInfoFrame, text="Version :  v3.1", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+versionLabel = tk.Label(master=programInfoFrame, text="Version :  v3.2", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 versionLabel.pack()
 
 # Info date label
-infoDateLabel = tk.Label(master=programInfoFrame, text="Date :  5/31/2023", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+infoDateLabel = tk.Label(master=programInfoFrame, text="Date :  6/19/2023", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 infoDateLabel.pack()
 
 #########################
@@ -823,7 +823,7 @@ exButton = tk.Button(master=exButtonFrame, text="Export to Excel", font=miniFont
 exButton.grid(column=0, row=0, sticky=tk.E, padx=5, pady=5)
 
 # Export stop button
-exStopButton = tk.Button(master=exButtonFrame, text="Stop", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.exStopCallBack(exJobNumEntry))
+exStopButton = tk.Button(master=exButtonFrame, text="Stop", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.exStopCallBack(exJobNumEntry, macTypeVar.get()))
 exStopButton.grid(column=1, row=0, sticky=tk.W, padx=5, pady=5)
 
 # Access button

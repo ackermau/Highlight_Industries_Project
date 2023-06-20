@@ -431,6 +431,118 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLineV, controlV
                         acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\endScript.scr \n')
                         break
                     except: pass
+
+        # AutoCAD not running error
+        else: return
+    else: return
+
+    ##########################
+    # Edit auto enclosures   #
+    ##########################
+    drawing = projNum + " Enclosures.dwg"
+    dir = folder + "\\" + drawing
+    if running == True:
+        os.startfile(dir)
+        if "acad.exe" in (i.name() for i in psutil.process_iter()):
+            acad = Autocad()
+
+            while True:
+                try:
+                    acad.doc.SendCommand('FILEDIA 0 \n')
+                    break
+                except: pass
+
+            # Automatic enclosure edit scripts
+            if running == True:
+                with open(scriptDir + '\\enclosureEditUpScript.scr', 'r') as file:
+                    script = file.read()
+                    script = script.replace('<PROJNUM>', projNum)
+                    script = script.replace('<ENGINIT>', engin)
+                    script = script.replace('<DATE>', date)
+                with open(scriptDir + '\\tempEncEditUp.scr', 'w') as file:
+                    file.write(script)
+                timer = time.perf_counter()
+                while True:
+                    endTimer = time.perf_counter()
+                    if (endTimer - timer) >= 60: return
+                    try:
+                        acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\tempEncEditUp.scr \n')
+                        break
+                    except: pass
+
+            if running == True:
+                with open(scriptDir + '\\enclosureEditLowScript.scr', 'r') as file:
+                    script = file.read()
+                    script = script.replace('<PROJNUM>', projNum)
+                    script = script.replace('<ENGINIT>', engin)
+                    script = script.replace('<DATE>', date)
+                with open(scriptDir + '\\tempEncEditLow.scr', 'w') as file:
+                    file.write(script)
+                timer = time.perf_counter()
+                while True:
+                    endTimer = time.perf_counter()
+                    if (endTimer - timer) >= 60: return
+                    try:
+                        acad.doc.SendCommand('SCRIPT ' + scriptDir + '\\tempEncEditLow.scr \n')
+                        break
+                    except: pass
+            else: return
+
+            ################################
+            # Freedom or Synergy scripts   #
+            ################################
+            if autoSynVar == 0:
+                if running == True:
+                    timer = time.perf_counter()
+                    while True:
+                        endTimer = time.perf_counter()
+                        if (endTimer - timer) >= 60: return
+                        try:
+                            acad.doc.SendCommand('-LAYER T SYN5 \n\n')
+                            break
+                        except: pass
+                    timer = time.perf_counter()
+                    while True:
+                        endTimer = time.perf_counter()
+                        if (endTimer - timer) >= 60: return
+                        try:
+                            acad.doc.SendCommand('-LAYER F FREEDOM \n\n')
+                            break
+                        except: pass
+                else: return
+            else:
+                if running == True:
+                    timer = time.perf_counter()
+                    while True:
+                        endTimer = time.perf_counter()
+                        if (endTimer - timer) >= 60: return
+                        try:
+                            acad.doc.SendCommand('-LAYER F SYN5 \n\n')
+                            break
+                        except: pass
+                    timer = time.perf_counter()
+                    while True:
+                        endTimer = time.perf_counter()
+                        if (endTimer - timer) >= 60: return
+                        try:
+                            acad.doc.SendCommand('-LAYER T FREEDOM \n\n')
+                            break
+                        except: pass
+                else: return
+
+            ################
+            # End script   #
+            ################
+            if running == True:
+                timer = time.perf_counter()
+                while True:
+                    endTimer = time.perf_counter()
+                    if (endTimer - timer) >= 60: return
+                    try:
+                        acad.doc.SendCommand('SCRIPT '+ scriptDir + '\\endEncScript.scr \n')
+                        break
+                    except: pass
+
         # AutoCAD not running error
         else: return
     else: return

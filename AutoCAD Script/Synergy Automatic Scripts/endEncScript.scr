@@ -1,0 +1,7 @@
+'_zoom -140,109 500,-209
+ATTDIA 1
+ATTREQ 0
+FILEDIA 1
+EXPERT 2
+(command "SAVE" "")
+(command "CLOSE")

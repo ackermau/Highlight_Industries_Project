@@ -11,7 +11,7 @@ running = True
 # Prints all pages from a specific job
 def printAllDrawings(jobNum, dir):
     scriptDir = os.getcwd() + '\\AutoCAD Script\\Synergy Automatic Scripts'
-    # getting dwg file
+    # getting schematics dwg file
     if running == True:
         file = dir + "\\" + jobNum + " Schematics.dwg"
         os.startfile(file)
@@ -70,7 +70,7 @@ def printAllDrawings(jobNum, dir):
                     break
                 except: pass
         else: return
-    else: return
+    else: return   
 
     # sends user message telling them all pages of jobNum were printed
     tk.messagebox.showinfo(title="Printed Job " + jobNum, message="All pages of job " + jobNum + " was printed")
@@ -78,11 +78,17 @@ def printAllDrawings(jobNum, dir):
 # prints selected pages desired for a specific job
 def printSelDrawings(jobNum, dir, pages):
     scriptDir = os.getcwd() + '\\AutoCAD Script\\Synergy Automatic Scripts'
+    # getting schematics dwg file
     pagesWRanges = pages.split(",")
     file = dir + "\\" + jobNum + " Schematics.dwg"
     os.startfile(file)
     if "acad.exe" in (i.name() for i in psutil.process_iter()):
         acad = Autocad()
+        while True:
+            try:
+                acad.doc.SendCommand('FILEDIA 0 \n')
+                break
+            except: pass
         for p in pagesWRanges:
             if running == True:
                 # multiple sheet print

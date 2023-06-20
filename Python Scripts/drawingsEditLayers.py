@@ -1022,7 +1022,6 @@ def editLayers(folder, cust, distr, projNum, manYear, phase, mainLine, control, 
                                         break
                                     except: pass
                     else: return
-                        
 
                     ########################
                     # Table scripts - 25   #
