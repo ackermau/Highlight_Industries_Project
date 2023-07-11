@@ -19,7 +19,7 @@ def printAllDrawings(jobNum, dir):
     # geting number of files in directory to print
     numFiles = len(fileList)
     # send commands to print all of the sheets
-    for x in range(0, numFiles):
+    for x in range(0, numFiles - 1):
         # Sheets 00 - 09
         if running == True:
             if x >= 0 and x <= 9:
@@ -28,6 +28,11 @@ def printAllDrawings(jobNum, dir):
                     os.startfile(file)
                     if "acad.exe" in (i.name() for i in psutil.process_iter()):
                         acad = Autocad()
+                        while True:
+                            try:
+                                acad.doc.SendCommand('FILEDIA 0 \n')
+                                break
+                            except: pass
                         timer = time.perf_counter()
                         while True:
                             endTimer = time.perf_counter()
@@ -46,6 +51,11 @@ def printAllDrawings(jobNum, dir):
                     os.startfile(file)
                     if "acad.exe" in (i.name() for i in psutil.process_iter()):
                         acad = Autocad()
+                        while True:
+                            try:
+                                acad.doc.SendCommand('FILEDIA 0 \n')
+                                break
+                            except: pass
                         timer = time.perf_counter()
                         while True:
                             endTimer = time.perf_counter()
@@ -65,6 +75,11 @@ def printAllDrawings(jobNum, dir):
         os.startfile(file)
         if "acad.exe" in (i.name() for i in psutil.process_iter()):
             acad = Autocad()
+            while True:
+                try:
+                    acad.doc.SendCommand('FILEDIA 0 \n')
+                    break
+                except: pass
             timer = time.perf_counter()
             while True:
                 endTimer = time.perf_counter()
@@ -97,6 +112,11 @@ def printSelDrawings(jobNum, dir, pages):
                             os.startfile(file)
                             if "acad.exe" in (i.name() for i in psutil.process_iter()):
                                 acad = Autocad()
+                                while True:
+                                    try:
+                                        acad.doc.SendCommand('FILEDIA 0 \n')
+                                        break
+                                    except: pass
                                 timer = time.perf_counter()
                                 while True:
                                     endTimer = time.perf_counter()
@@ -114,6 +134,11 @@ def printSelDrawings(jobNum, dir, pages):
                             os.startfile(file)
                             if "acad.exe" in (i.name() for i in psutil.process_iter()):
                                 acad = Autocad()
+                                while True:
+                                    try:
+                                        acad.doc.SendCommand('FILEDIA 0 \n')
+                                        break
+                                    except: pass
                                 timer = time.perf_counter()
                                 while True:
                                     endTimer = time.perf_counter()
@@ -133,6 +158,11 @@ def printSelDrawings(jobNum, dir, pages):
                             os.startfile(file)
                             if "acad.exe" in (i.name() for i in psutil.process_iter()):
                                 acad = Autocad()
+                                while True:
+                                    try:
+                                        acad.doc.SendCommand('FILEDIA 0 \n')
+                                        break
+                                    except: pass
                                 timer = time.perf_counter()
                                 while True:
                                     endTimer = time.perf_counter()
@@ -150,6 +180,11 @@ def printSelDrawings(jobNum, dir, pages):
                         os.startfile(file)
                         if "acad.exe" in (i.name() for i in psutil.process_iter()):
                             acad = Autocad()
+                            while True:
+                                try:
+                                    acad.doc.SendCommand('FILEDIA 0 \n')
+                                    break
+                                except: pass
                             timer = time.perf_counter()
                             while True:
                                 endTimer = time.perf_counter()
@@ -170,6 +205,11 @@ def printSelDrawings(jobNum, dir, pages):
         os.startfile(file)
         if "acad.exe" in (i.name() for i in psutil.process_iter()):
             acad = Autocad()
+            while True:
+                try:
+                    acad.doc.SendCommand('FILEDIA 0 \n')
+                    break
+                except: pass
             timer = time.perf_counter()
             while True:
                 endTimer = time.perf_counter()

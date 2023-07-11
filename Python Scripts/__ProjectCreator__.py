@@ -835,7 +835,7 @@ printButton = tk.Button(master=printButtonFrame, text="Print", font=miniFont, ac
 printButton.grid(column=0, row=0, sticky=tk.E, padx=5, pady=5)
 
 # Print Stop button
-printStopButton = tk.Button(master=printButtonFrame, text="Stop", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.printStopCallBack(jobEntry))
+printStopButton = tk.Button(master=printButtonFrame, text="Stop", font=miniFont, activebackground=machineFrameColor, activeforeground=textColor, bg=buttonColor, fg=machineFrameColor, command= lambda: callBack.printStopCallBack(jobEntry, macTypeVar.get()))
 printStopButton.grid(column=1, row=0, sticky=tk.W, padx=5, pady=5)
 
 ###################

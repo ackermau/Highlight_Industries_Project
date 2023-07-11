@@ -6,17 +6,17 @@ EXPERT 2
 -OSNAP 
 TSPACEFAC 0.8
 '_.zoom 52,21 118,-11
-(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "100.573,1.2" "" "V" "R" "21021-SP" "")
-(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "73.75,4.5" "" "V" "R" "jjg" "")
+(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "100.573,1.2" "" "V" "R" "42105-SP" "")
+(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "73.75,4.5" "" "V" "R" "ccc" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "73.6,3.2" "" "V" "R" "02/02/2022" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "88.4,0.6" "" "V" "R" "<MACHINE>" "")
 '_.zoom 220,-15 315,-60
-(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "287,-42.9" "" "V" "R" "21021-EN1" "")
-(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "245,-37.6" "" "V" "R" "jjg" "")
+(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "287,-42.9" "" "V" "R" "42105-EN1" "")
+(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "245,-37.6" "" "V" "R" "ccc" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "244.9,-39.7" "" "V" "R" "02/02/2022" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "267,-43.5" "" "V" "R" "<MACHINE>" "")
 '_.zoom 410,-18 505,-60
-(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "477.2,-43" "" "V" "R" "21021-EN2" "")
-(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "435.5,-37.75" "" "V" "R" "jjg" "")
+(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "477.2,-43" "" "V" "R" "42105-EN2" "")
+(command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "435.5,-37.75" "" "V" "R" "ccc" "")
 (commnad "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "435.25,-39.75" "" "V" "R" "02/02/2022" "")
 (command "-ATTEDIT" "Y" "HLI_Electrical_Border" "" "" "457.5,-43.5" "" "V" "R" "<MACHINE>" "")
