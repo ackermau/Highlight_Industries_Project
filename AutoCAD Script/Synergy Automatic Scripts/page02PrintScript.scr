@@ -1,0 +1,7 @@
+ATTDIA 0
+ATTREQ 1
+FILEDIA 0
+EXPERT 2
+(command "LAYOUT" "S" "PAGE 02")
+(command "-PLOT" "N" "" "" "\\\\server\\EE - Sharp MX-3501N" "N" "N" "Y")
+(command "LAYOUT" "S" "Model")

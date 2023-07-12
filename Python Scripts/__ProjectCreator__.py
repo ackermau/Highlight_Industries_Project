@@ -575,7 +575,7 @@ mainLineVLabel = tk.Label(master=utilitySpecsFrame.sub_frame, text="Main Line Vo
 mainLineVLabel.grid(column=0, row=1, sticky=tk.W, padx=5, pady=5)
 mainLineVEntry = tk.Entry(master=utilitySpecsFrame.sub_frame, font=miniFont, bg=miscColor, fg=machineFrameColor)
 mainLineVEntry.grid(column=1, row=1, sticky=tk.E, padx=5, pady=5)
-mainLineVEntry.insert(0, "120 VAC, 1 PHASE")
+mainLineVEntry.insert(0, "XXX VAC, X PHASE")
 
 # Control Voltage Label/box, default = 120 VAC, 24VDC
 controlVLabel = tk.Label(master=utilitySpecsFrame.sub_frame, text="Control Voltage :", font=miniFont, bg=machineFrameColor, fg=textColor)
@@ -589,7 +589,7 @@ totMotorLabel = tk.Label(master=utilitySpecsFrame.sub_frame, text="Total Motor F
 totMotorLabel.grid(column=0, row=3, sticky=tk.W, padx=5, pady=5)
 totMotorEntry = tk.Entry(master=utilitySpecsFrame.sub_frame, font=miniFont, bg=miscColor, fg=machineFrameColor)
 totMotorEntry.grid(column=1, row=3, sticky=tk.E, padx=5, pady=5)
-totMotorEntry.insert(0, "2 HP")
+totMotorEntry.insert(0, "X HP")
 
 # Full Load Current Label/box, default = 15 AMP
 fullLoadLabel = tk.Label(master=utilitySpecsFrame.sub_frame, text="Full Load Current :", font=miniFont, bg=machineFrameColor, fg=textColor)
@@ -597,9 +597,9 @@ fullLoadLabel.grid(column=0, row=4, sticky=tk.W, padx=5, pady=5)
 fullLoadEntry = tk.Entry(master=utilitySpecsFrame.sub_frame, font=miniFont, bg=miscColor, fg=machineFrameColor)
 fullLoadEntry.grid(column=1, row=4, sticky=tk.E, padx=5, pady=5)
 if coldVar == 0:
-    fullLoadEntry.insert(0, "15 AMP")
+    fullLoadEntry.insert(0, "XX AMP")
 else:
-    fullLoadEntry.insert(0, "20 AMP")
+    fullLoadEntry.insert(0, "XX AMP")
 
 #############################
 # Export tab                #
@@ -797,11 +797,11 @@ licInfoLabel = tk.Label(master=programInfoFrame, text="© Highlight Industries 2
 licInfoLabel.pack()
 
 # Program version label
-versionLabel = tk.Label(master=programInfoFrame, text="Version :  v3.2", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+versionLabel = tk.Label(master=programInfoFrame, text="Version :  v4", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 versionLabel.pack()
 
 # Info date label
-infoDateLabel = tk.Label(master=programInfoFrame, text="Date :  6/19/2023", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
+infoDateLabel = tk.Label(master=programInfoFrame, text="Date :  7/13/2023", font=textFont, bg=machineFrameColor, fg=textColor, padx=5, pady=2)
 infoDateLabel.pack()
 
 #########################

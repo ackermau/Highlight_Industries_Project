@@ -65,7 +65,7 @@ def resetCallBack(semiMachine):
 
     # Main Line Entry
     semiMachine.mainLineVEntry.delete(0, tk.END)
-    semiMachine.mainLineVEntry.insert(0, "120 VAC, 1 PHASE")
+    semiMachine.mainLineVEntry.insert(0, "XXX VAC, X PHASE")
 
     # Control Voltage Entry
     semiMachine.controlVEntry.delete(0, tk.END)
@@ -73,11 +73,11 @@ def resetCallBack(semiMachine):
 
     # Total Motor Entry
     semiMachine.totMotorEntry.delete(0, tk.END)
-    semiMachine.totMotorEntry.insert(0, "2 HP")
+    semiMachine.totMotorEntry.insert(0, "X HP")
 
     # Full Load Entry
     semiMachine.fullLoadEntry.delete(0, tk.END)
-    semiMachine.fullLoadEntry.insert(0, "15 AMP")
+    semiMachine.fullLoadEntry.insert(0, "XX AMP")
 
     # Setting focus
     semiMachine.custEntry.focus()
